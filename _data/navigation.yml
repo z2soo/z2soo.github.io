@@ -1,8 +1,8 @@
 # main links
 main:
   - title: "Categories"
-    url: /categories/
+    url: categories/
 - title: "Years"
-    url: /years/
+    url: years/
 - title: "Tags"
-    url: /tags/
+    url: tags/
