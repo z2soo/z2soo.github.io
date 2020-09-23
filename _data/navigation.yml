@@ -1,4 +1,8 @@
 # main links
 main:
-  # - title: "Categories"
-  #   url: /categories/
+  - title: "About"
+    url: /about/
+  - title: "Category"
+    url: /category/
+  - title: "Tags"
+    url: /tags/
