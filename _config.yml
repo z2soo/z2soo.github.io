@@ -94,7 +94,7 @@ analytics:
 # Site Author
 author:
   name             : "Jisoo Lim"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/mypic.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Computing"
   location         : "Anyang, South Korea"
   email            :
