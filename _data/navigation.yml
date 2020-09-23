@@ -1,8 +1,4 @@
 # main links
 main:
-  - title: "Categories"
-    url: "https://z2soo.github.io/blog/categories/"
-- title: "Years"
-    url: "https://z2soo.github.io/blog/years/"
-- title: "Tags"
-    url: "https://z2soo.github.io/blog/tags/"
+  # - title: "Categories"
+  #   url: /categories/
