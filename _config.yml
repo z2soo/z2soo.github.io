@@ -95,8 +95,8 @@ analytics:
 author:
   name             : "Jiso Lim"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "History -> Computing."
-  location         : "Anyang, Republic of Korea"
+  bio              : "Computing"
+  location         : "Anyang, South Korea"
   email            :
   links:
     - label: "Email"
