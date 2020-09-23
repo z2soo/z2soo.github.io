@@ -1,8 +1,8 @@
 # main links
 main:
   - title: "About"
-    url: /_pages/about/
+    url: /about/
   - title: "Category"
-    url: /_pages/category-archive/
+    url: /category/
   - title: "Tags"
-    url: /_pages/tag-archive/
+    url: /tags/
