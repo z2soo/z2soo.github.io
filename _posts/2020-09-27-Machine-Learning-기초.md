@@ -16,7 +16,7 @@ toc: true
 
 
 
-## 경향성
+### 경향성
 
 회귀분석의 출발점은 "우리가 얻은(관찰한) 데이터가 어떤 특정한 경향성을 가지고 있지 않을까?" 이다. 이러한 경향성 혹은 의존성을 발견할 수 있다면, 앞으로 발생할 일에 대해 prediction(예측) 할 수 있다. 
 
@@ -31,7 +31,7 @@ toc: true
 
 
 
-## 2. Machine Learning 유래 및 응용 
+# 2. Machine Learning 유래 및 응용 
 
 Machine Learning은 한 마디로 소프트웨어, 프로그램이다. Explicit program(정해진 input - output을 제공하는 프로그램)의 한계로 인해 대두되어 사용되어지게 되었다. 
 
@@ -57,7 +57,7 @@ Machine Learning은 한 마디로 소프트웨어, 프로그램이다. Explicit 
 
 
 
-## 3. Learning (학습) 종류 
+# 3. Learning (학습) 종류 
 
 Label의 유무에 따른 데이터가 학습의 종류를 결정한다.
 
@@ -88,7 +88,7 @@ Regression을 이용해 이 작업을 처리할 것!
 
 
 
-## 4. Supervised Learning 
+# 4. Supervised Learning 
 
 위에서 언급한 supervised learning(지도 학습)에 대한 3가지 유형을 살펴보도록 한다. 
 
