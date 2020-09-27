@@ -95,7 +95,8 @@ analytics:
 author:
   name             : "Jisoo Lim"
   avatar           : "/assets/images/mypic.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Post what I study :D /n 티스토리 블로그 내용 이전 중"
+  bio              : "Post what I study :D" 
+                     "티스토리 블로그 내용 이전 중"
   location         : "Anyang, South Korea"
   email            :
   links:
