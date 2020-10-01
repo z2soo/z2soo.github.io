@@ -8,6 +8,7 @@ tags:
   - deep learning
   - data analysis
   - simple linear regression
+  - tensorflow
 toc: true
 ---
 
