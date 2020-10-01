@@ -7,6 +7,7 @@ tags:
   - machine learning
   - deep learning
   - data analysis
+  - linear regression
 toc: true
 ---
 
