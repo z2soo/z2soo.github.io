@@ -132,7 +132,7 @@ display(df)
 
 scatter 그래프를 활용하여 흩어진 상태, 경향성을 확인한다. 그 결과, 우상향하는 데이터를 확인할 수 있다. 
 
-- **산점도 그리는 함수: plt.scatter( x축 데이터, y축 데이터 )**
+- 산점도 그리는 함수: plt.scatter( x축 데이터, y축 데이터 )
 
 ```python
 plt.scatter(df["Temp_Norm"], df["Ozone_Norm"])
