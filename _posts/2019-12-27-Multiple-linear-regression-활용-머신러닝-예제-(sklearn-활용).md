@@ -25,7 +25,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 ```
-
 <br>
 
 ### 2) Data pre processing
