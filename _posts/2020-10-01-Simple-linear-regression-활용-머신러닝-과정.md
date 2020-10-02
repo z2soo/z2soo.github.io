@@ -26,7 +26,7 @@ import tensorflow as tf
 
 값을 직접 정해줘도 되지만, placeholder parameter를 사용하면 실행시킬 때 값을 받도록 node만 잡아줄 수 있다.
 
-- data set 이름 = tf.placeholder( dtype = 타입설정 )
+- data set 이름 = **tf.placeholder( dtype = 타입설정 )**
 
 ```
 x_data = [1,2,3]
@@ -43,11 +43,11 @@ y = tf.placeholder(dtype=tf.float32)
 가설 설정을 위해 필요한 Weight(가중치)와 bias의 node를 설정해준다. 보다 적절한 W, b의 값을 찾는 것이 모든 것의 최종 목적!!!임을 잊지 말자.
 
 W는 학습을 통해 계속해서 값이 변하고, 직접 입력하는 값이 아니기 때문에 변수 node, variable로 설정한다. 
-초기 값이 0-1 사이 랜덤으로 설정되도록 random_normal 함수를 사용한다.
+**초기 값이 0-1 사이 랜덤으로 설정되도록 random_normal 함수를 사용한다.**
 1개의 W 값을 필요로 하기 때문에, shape 형태에 숫자로 표현하고, 뒤의 name은 프로그램 내에서 사용할 이름을 설정한다. 
 
-- 가설: H(x) = Wx + b
-- tf.Variable( tf.random_normal([갯수]), name = '이름' )
+- 가설: **H(x) = Wx + b**
+- **tf.Variable( tf.random_normal([갯수]), name = '이름' )**
 
 ``` python
 W = tf.Variable(tf.random_normal([1]), name = 'weight')
@@ -70,8 +70,8 @@ b = tf.Variable(tf.random_normal([1]), name = 'bias')
 
 비용함수는 '최소제곱법: 가설에서 y 값을 빼고 그 값을 제곱하여 평균을 구하는 것'으로 정의된다.
 
-- 괄호 안의 평균을 구하는 함수: tf.reduce_mean()
-- 괄호 안의 값을 제곱하는 함수: tf.square()
+- 괄호 안의 평균을 구하는 함수: **tf.reduce_mean()**
+- 괄호 안의 값을 제곱하는 함수: **tf.square()**
 
 ```python
 cost = tf.reduce_mean(tf.square(H - y))
@@ -90,8 +90,8 @@ cost 함수 node는 H와 y의 node를 사용한다. 이미지로 보면 다음�
 optimizer 알고리즘: 경사 하강법 알고리즘을 사용하여 cost를 minimize 하도록 설정한다.
 optimizer 알고리즘은 일종의 미분과 같은 실행은 한다. 
 
-- 알고리즘 노드: optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)
-- 학습 실행 노드: train = optimizer.minimize(cost)
+- 알고리즘 노드: **optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)**
+- 학습 실행 노드: **train = optimizer.minimize(cost)**
 
 ```python
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)
@@ -110,10 +110,10 @@ optimizer와 train의 node 생성이 완료되었다. train 실행 시 모든 no
 
 node를 실행시키기 위해서는 runner, 즉 session이 필요하다. 
 
-또한, 변수 variable을 사용하면 학습 시작 전에 반드시 초기화를 해야하기에 다음의 코드를 꼭 사용한다. 
+또한, **변수 variable을 사용하면 학습 시작 전에 반드시 초기화!!**를 해야하기에 다음의 코드를 꼭 사용한다. 
 
-- node 실행 runner: sess = tf.Session( )
-- 변수 초기화 코드: sess.run( tf.global_variables_initializer( ) ) 
+- node 실행 runner: **sess = tf.Session( )**
+- 변수 초기화 코드: **sess.run( tf.global_variables_initializer( ) )** 
 
 ```python
 sess = tf.Session() 
@@ -129,7 +129,7 @@ sess.run(tf.global_variables_initializer())
 이를 위해 train을 한번만 수행시키는 것이 아니다. 한 번만 수행한다면 cost값은 한 번만 줄어든다. 반복 실행 필요!
 
 - for step in range(학습 횟수)
-- 실행한 node값을 저장할 변수 = sess.run( [실행 원하는 node 이름], feed_dict = { x: 데이터, y: 데이터 })
+- 실행한 node값을 저장할 변수 = **sess.run( [실행 원하는 node 이름], feed_dict = { x: 데이터, y: 데이터 })**
 
 ```python
 for step in range(3000): 

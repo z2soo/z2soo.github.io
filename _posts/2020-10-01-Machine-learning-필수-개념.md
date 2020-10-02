@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning 필수 개념"
+title: "Machine learning 필수 개념"
 categories: 
   - Machine/Deep learning 
 tags:
@@ -15,8 +15,8 @@ toc: true
 
 Learning rate를 사용하는 것은 cost 값을 떨어뜨리기 위함이다. 정해진 값은 없으며, 임의로 설정한다. 
 
-만약 learning rate가 너무 크면 over shooting 현상이 발생하고, 
-learning rate가 너무 작으면 수렴하는 속도가 너무 느리고 local minimum 현상에 빠질 수 있다. 
+만약 learning rate가 너무 크면 `over shooting` 현상이 발생하고, 
+learning rate가 너무 작으면 수렴하는 속도가 너무 느리고 `local minimum` 현상에 빠질 수 있다. 
 
 cost 함수에서 최소가 되는 때의 W 값을 아는 것이 목적이므로, 현재 W1 - (learnign rate \* 기울기 ) 과정으로 수행하면서 적합한 W를 찾아간다. 그런데 learnign rate * 기울기 값이 큰 경우 반대편으로 뛰게 되고 이른 over shooting이라 한다. 적합한 learning rate는 cost 값을 기준으로 커스터마이징을 해야 한다.
 

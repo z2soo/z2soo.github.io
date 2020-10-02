@@ -36,7 +36,7 @@ import matplotlib.pyplot as plt
 
 pandas 통해 파일 불러오고, fancy indexing 통해 필요한 열(Ozone, Temp) 만을 추출한다.
 
-- pandas 이용한 파일 불러오기: pd.read_csv( '주소/파일명' )
+- pandas 이용한 파일 불러오기: **pd.read_csv( '주소/파일명' )**
 - fancy indexing: df이름[ [ 'col이름' ] ]
 
 ```python
@@ -53,7 +53,7 @@ print(f'읽어들인 데이터의 shape: {total_file.shape}')
 
 #### 결측치 처리
 
-- dataframe 결측치 처리: df이름.dropna( axis = , how = , inplace = )
+- dataframe 결측치 처리: **df이름.dropna( axis = , how = , inplace = )**
 
 ```python
 df = df.dropna(how='any', inplace=False)
@@ -69,7 +69,7 @@ print(f'결측치를 제거한 후 남은 데이터: {df.shape}')
 
 boxplot을 사용해서 Temp(온도)와 Ozone(오존)에 대한 이상치를 파악한다.
 
-- boxplot 그래프 그리기: plt.boxplot( df이름 [ 'col이름' ] )
+- boxplot 그래프 그리기: **plt.boxplot( df이름 [ 'col이름' ] )**
 
 ```python
 plt.boxplot(df['Temp'])
@@ -82,13 +82,13 @@ plt.boxplot(df['Ozone'])
 
 이상치를 다음과 같이 정의한다. 
 
-- IQR = Q3 - Q1
-  - Q3 + IQR \* 1.5 초과하는 값 
-  - Q1 - IQR \* 1.5 미만의 값
+- **IQR = Q3 - Q1**
+  - **Q3 + IQR \* 1.5 초과하는 값** 
+  - **Q1 - IQR \* 1.5 미만의 값**
 
 <br>
 
-- Numpy가 가진 4분위 함수: np.percentile( data이름, 백분위 )
+- Numpy가 가진 4분위 함수: **np.percentile( data이름, 백분위 )**
 
 ```python
 q1, q3 = np.percentile(df["Ozone"],[25,75])
@@ -117,7 +117,7 @@ print(f'이상치를 제거한 후 남은 데이터: {df.shape}')
 이에 정제된 데이터를 표준화 혹은 정규화를 이용해서 값의 범위를 조절하여 사용한다. 
 둘 중 보다 적합한 것을 사용하면 되고, 정규화는 음수의 값이 나올 수 있다.
 
-이때의 표준화는 데이터의 값이 0-1 범위내에 존재하도록 비율적으로 축소시키는 작업을 의미한다.
+이때의 **표준화**는 **데이터의 값이 0-1 범위내에 존재하도록 비율적으로 축소시키는 작업**을 의미한다.
 
 ![image](https://user-images.githubusercontent.com/58674365/94814939-e6af7100-0434-11eb-9290-2307384b27ed.png)
 
@@ -135,7 +135,7 @@ display(df)
 
 scatter 그래프를 활용하여 흩어진 상태, 경향성을 확인한다. 그 결과, 우상향하는 데이터를 확인할 수 있다. 
 
-- 산점도 그리는 함수: plt.scatter( x축 데이터, y축 데이터 )
+- 산점도 그리는 함수: **plt.scatter( x축 데이터, y축 데이터 )**
 
 ```python
 plt.scatter(df["Temp_Norm"], df["Ozone_Norm"])
@@ -229,7 +229,7 @@ for step in range(10000):
 
 #### 최적화 가설
 
-W와 b는 노드이기 때문에 see.run을 통해 실행을 시켜줘야지만 값을 얻을 수 있다.
+W와 b는 노드이기 때문에 sess.run을 통해 실행을 시켜줘야지만 값을 얻을 수 있다.
 
 첫 번째 식은 데이터에 대한 산점도를 표현한 것
 두 번재 식은 최적화된 가정에 대한 식을 표현한 것

@@ -27,7 +27,7 @@ Google의 Tensorfloe 프로그램을 통해서 머신러닝을 해보도록 한�
 
 ## 2. Tensorflow 설치
 
-- Anaconda prompt 관리자 권한으로 실행 > 가상환경 진입 > pip install tensorflow==1.5.0
+- Anaconda prompt 관리자 권한으로 실행 > 가상환경 진입 > **pip install tensorflow==1.5.0**
 
 ```python
 pip install tensorflow==1.5.0
