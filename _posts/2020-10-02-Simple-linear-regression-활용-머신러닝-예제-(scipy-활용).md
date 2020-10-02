@@ -115,9 +115,7 @@ print(result)     #[45.352158]
 ## 2. Simple linear regression 예제: scipy 활용
 
 scipy의 stats module을 사용하면, 기본적인 전처리 외에 표준화, 정규화 이후의 과정은 진행하지 않아도 된다.
-scipy stats module 내에서 자동적으로 처리해 준다. 
-
-<br>
+scipy stats module 내에서 자동적으로 처리해 준다. <br>
 
 ### 1) Module import
 
