@@ -20,9 +20,9 @@ Normalization(졍규화) 또는 Standardization(표준화) 라고 한다. 이는
 
 
 
-![image](https://user-images.githubusercontent.com/58674365/94580713-2fd8b700-02b5-11eb-84a4-e65aea2f9ea0.png)
+<center>![image](https://user-images.githubusercontent.com/58674365/94580713-2fd8b700-02b5-11eb-84a4-e65aea2f9ea0.png)</center>
 
-
+<br>
 
 
 
@@ -66,11 +66,11 @@ print(y_data)
 
 
 
-![image](https://user-images.githubusercontent.com/58674365/94581535-2dc32800-02b6-11eb-8211-94e56690cfbe.png)
+<center>![image](https://user-images.githubusercontent.com/58674365/94581535-2dc32800-02b6-11eb-8211-94e56690cfbe.png)</center>
 
 
 
-![image](https://user-images.githubusercontent.com/58674365/94581600-39aeea00-02b6-11eb-892f-0efd32034ae7.png)
+<center>![image](https://user-images.githubusercontent.com/58674365/94581600-39aeea00-02b6-11eb-892f-0efd32034ae7.png)
 
 
 
