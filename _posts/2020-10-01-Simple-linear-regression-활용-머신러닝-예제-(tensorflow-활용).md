@@ -16,9 +16,10 @@ toc: true
 
 주어진 온도, 오존 데이터를 활용하여 simple linear regression 경향성을 파악하여 예측한다.
 EDA를 통해 데이터 정제(NA, 이상치)를 우선적으로 실행해야 한다.
-데이터는 깃허브 머신러닝 repository에서 확인 가능하다. https://github.com/z2soo
+데이터는 깃허브 머신러닝 repository에서 확인 가능하다. 
+https://github.com/z2soo
 
-
+<br>
 
 ### 1) Module import
 
@@ -29,7 +30,7 @@ import pandas as pd
 import matplotlib.pyplot as plt	
 ```
 
-
+<br>
 
 ### 2) 학습 데이터 불러오기
 
@@ -46,7 +47,7 @@ print(f'읽어들인 데이터의 shape: {total_file.shape}')
 # 읽어들인 데이터의 shape: (153, 6)
 ```
 
-
+<br>
 
 ### 3) 학습 데이터 전처리
 
@@ -62,7 +63,7 @@ print(f'결측치를 제거한 후 남은 데이터: {df.shape}')
 # 결측치를 제거한 후 남은 데이터: (116, 2)
 ```
 
-
+<br>
 
 #### **이상치 처리**
 
@@ -81,9 +82,11 @@ plt.boxplot(df['Ozone'])
 
 이상치를 다음과 같이 정의한다. 
 
-|                       IQR = Q3 - Q1                        |
-| :--------------------------------------------------------: |
-| Q3 + IQR \* 1.5 초과하는 값 <br/>Q1 - IQR \* 1.5 미만의 값 |
+- IQR = Q3 - Q1
+  - Q3 + IQR \* 1.5 초과하는 값 
+  - Q1 - IQR \* 1.5 미만의 값
+
+<br>
 
 - Numpy가 가진 4분위 함수: np.percentile( data이름, 백분위 )
 
@@ -105,9 +108,9 @@ print(f'이상치를 제거한 후 남은 데이터: {df.shape}')
 # 이상치를 제거한 후 남은 데이터: (114, 2)
 ```
 
+<br>
 
-
-#### **Normalization(표준화), Standardzation(정규화)**
+#### Normalization(표준화), Standardzation(정규화)
 
 앞선 포스팅과 같이 표준화를 하지 않아도 머신러닝이 가능하다. 하지만, 값의 범위가 커짐에 따라서 학습이 정상적으로 이루어지지 않는 경우가 있다. (범위가 더 큰 변수의 영향을 더 받게 된다.) 
 
@@ -126,7 +129,7 @@ display(df)
 
 ![image](https://user-images.githubusercontent.com/58674365/94814991-f9c24100-0434-11eb-8410-93e75fbb1c26.png)
 
-
+<br>
 
 #### 경향성 확인
 
@@ -140,9 +143,7 @@ plt.scatter(df["Temp_Norm"], df["Ozone_Norm"])
 
 ![image](https://user-images.githubusercontent.com/58674365/94815737-d5b32f80-0435-11eb-9742-930504e528d5.png)
 
-
-
-
+<br><br>
 
 ## 2. Simple linear regression 이용한 머신러닝 예제 - 머신러닝
 
@@ -156,7 +157,7 @@ x = tf.placeholder(dtype=tf.float32)
 y = tf.placeholder(dtype=tf.float32)
 ```
 
-
+<br>
 
 #### 2) W, b 설정
 
@@ -165,7 +166,7 @@ W = tf.Variable(tf.random_normal([1]), name = 'weight')
 b = tf.Variable(tf.random_normal([1]), name = 'bias')
 ```
 
-
+<br>
 
 #### 3) Hyphothesis 설정
 
@@ -173,7 +174,7 @@ b = tf.Variable(tf.random_normal([1]), name = 'bias')
 H = W * x + b
 ```
 
-
+<br>
 
 #### 4) Cost function 설정
 
@@ -181,7 +182,7 @@ H = W * x + b
 cost = tf.reduce_mean(tf.square(H - y))
 ```
 
-
+<br>
 
 #### 5) Train node 설정
 
@@ -193,7 +194,7 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
 train = optimizer.minimize(cost)
 ```
 
-
+<br>
 
 #### 6) Runner 설정 및 변수 초기화
 
@@ -204,7 +205,7 @@ sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 ```
 
-
+<br>
 
 #### 7) learning (학습) 실행
 
@@ -222,7 +223,7 @@ for step in range(10000):
 
 ![image](images/94816059-3cd0e400-0436-11eb-9305-4518e28e4ca6.png)
 
-
+<br>
 
 #### 8) 최적화 가설 및 예측
 
@@ -241,7 +242,7 @@ plt.plot(df["Temp_Norm"], df["Temp_Norm"] * sess.run(W) + sess.run(b))
 
 ![image](https://user-images.githubusercontent.com/58674365/94816121-507c4a80-0436-11eb-9f0e-4dffda41fcfb.png)
 
-
+<br>
 
 #### 예측
 
