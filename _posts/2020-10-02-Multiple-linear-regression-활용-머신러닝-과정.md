@@ -81,7 +81,7 @@ W와 b 또한 2차원 매트릭스의 형태로 나타나며, shape을 맞춰줘
 - **W = tf.Variable( tf.random_normal( [ 행, 열 ] ), name = '이름' )**
 - **b = tf.Variable( tf.random_normal( [ 행, 열 ] ), name = '이름' )**
 
- 
+ <br>
 
 ### 4) Hypothesis 설정
 
