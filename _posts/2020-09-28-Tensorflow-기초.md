@@ -15,7 +15,7 @@ toc: true
 
 Google의 Tensorfloe 프로그램을 통해서 머신러닝을 해보도록 한다. 다른 package, module에 비해 살짝 특이한 형태의 library를 가진다.
 
-
+<br>
 
 ### 3가지 구성요소
 
@@ -23,9 +23,7 @@ Google의 Tensorfloe 프로그램을 통해서 머신러닝을 해보도록 한�
 - Edge: 동적 데이터를 노드로 실어나르는 역할을 담당
 - Tensor: 다차원 배열 형태의 동적 데이터
 
-
-
-
+<br><br>
 
 ## 2. Tensorflow 설치
 
@@ -39,9 +37,7 @@ import tensorflow as tf
 # 설치 후 puthon에 import해서 사용
 ```
 
-
-
-
+<br><br>
 
 ## 3. Tensorflow 사용
 
@@ -75,10 +71,9 @@ b'Hello World!!'
 Hello World!!
 ```
 
-
+<br>
 
 [코드 입력]
-
 Q. 2개의 값을 더하는 tensorflow graph를 생성, 실행하여 값을 구하시오.
 
 ```python
@@ -107,7 +102,7 @@ print(sess.run(node3))
 30.0
 ```
 
-
+<br>
 
 [코드 입력]
 

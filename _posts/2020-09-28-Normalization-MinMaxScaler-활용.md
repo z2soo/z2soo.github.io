@@ -20,15 +20,13 @@ Normalization(졍규화) 또는 Standardization(표준화) 라고 한다. 이는
 
 ![image](https://user-images.githubusercontent.com/58674365/94580713-2fd8b700-02b5-11eb-84a4-e65aea2f9ea0.png)</center>
 
-<br>
-
-
+<br><br>
 
 ## 2. MinMaxScaler
 
 정규화를 일일이 진행한다면 복잡스럽기 때문에, sklearn에서 제공하는 MinMaxScaler module을 사용한다.
 
-
+<br>
 
 ### 1) Module import
 
@@ -38,14 +36,14 @@ Normalization(졍규화) 또는 Standardization(표준화) 라고 한다. 이는
 from sklearn.preprocessing import MinMaxSxaler	
 ```
 
-
+<br>
 
 ### 2) Data preprocessing
 
 - 표준화를 제외한 결측치 처리, 이상치 처리
 - 이전 포스팅 참조
 
-
+<br>
 
 ### 3) Training data set: MinMaxScaler 사용
 
@@ -64,13 +62,17 @@ print(y_data)
 
 
 
+x_data를 print한 결과
+
 ![image](https://user-images.githubusercontent.com/58674365/94581535-2dc32800-02b6-11eb-8211-94e56690cfbe.png)
 
-<br>
+
+
+y_data를 print한 결과
 
 ![image](https://user-images.githubusercontent.com/58674365/94581600-39aeea00-02b6-11eb-892f-0efd32034ae7.png)
 
-
+<br>
 
 
 ### 4) Etc
