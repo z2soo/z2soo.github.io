@@ -18,9 +18,7 @@ Data pre processing(데이터 전처리 과정) 중 결측값, 이상치 처리�
 
 Normalization(졍규화) 또는 Standardization(표준화) 라고 한다. 이는, 0-1 사이로 전체적인 scale을 맞춰준다. 표준화를 하지 않아도 머신러닝이 가능하지만, 값의 범위가 커짐에 따라서 학습이 정상적으로 이루어지지 않는 경우가 있다. (범위가 더 큰 변수의 영향을 더 받게 된다.) 이에 데이터를 표준화 또는 정규화를 이용해서 값의 범위를 조절하여 사용한다. 즉, 데이터의 값이 0-1 범위내에 존재하도록 비율적으로 축소시키는 작업을 의미한다.
 
-
-
-<center>![image](https://user-images.githubusercontent.com/58674365/94580713-2fd8b700-02b5-11eb-84a4-e65aea2f9ea0.png)</center>
+![image](https://user-images.githubusercontent.com/58674365/94580713-2fd8b700-02b5-11eb-84a4-e65aea2f9ea0.png)</center>
 
 <br>
 
@@ -66,11 +64,12 @@ print(y_data)
 
 
 
-<center>![image](https://user-images.githubusercontent.com/58674365/94581535-2dc32800-02b6-11eb-8211-94e56690cfbe.png)</center>
+![image](https://user-images.githubusercontent.com/58674365/94581535-2dc32800-02b6-11eb-8211-94e56690cfbe.png)
 
+<br>
 
+![image](https://user-images.githubusercontent.com/58674365/94581600-39aeea00-02b6-11eb-892f-0efd32034ae7.png)
 
-<center>![image](https://user-images.githubusercontent.com/58674365/94581600-39aeea00-02b6-11eb-892f-0efd32034ae7.png)
 
 
 
