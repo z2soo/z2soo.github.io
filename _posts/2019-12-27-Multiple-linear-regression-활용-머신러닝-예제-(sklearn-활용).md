@@ -12,7 +12,7 @@ tags:
 toc: true
 ---
 
-## 1. Multiple linear regression 활용 머신러닝 예제 - 데이터 준비
+# 1. Multiple linear regression 활용 머신러닝 예제 - 데이터 준비
 
 ### 1) Module import
 
