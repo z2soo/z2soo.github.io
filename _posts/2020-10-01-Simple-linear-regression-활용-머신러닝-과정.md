@@ -20,9 +20,7 @@ google의 tensorflow를 사용한 머신러닝을 위한 모듈을 import 해준
 import tensorflow as tf
 ```
 
-
-
-
+<br><br>
 
 ## 2. Training data 설정
 
@@ -38,9 +36,7 @@ x = tf.placeholder(dtype=tf.float32)
 y = tf.placeholder(dtype=tf.float32)
 ```
 
-
-
-
+<br><br>
 
 ## 3. Weight, bias 설정
 
@@ -58,23 +54,17 @@ W = tf.Variable(tf.random_normal([1]), name = 'weight')
 b = tf.Variable(tf.random_normal([1]), name = 'bias')	
 ```
 
-
-
-
+<br><br>
 
 ## 4. Hypothesis(가설) 설정
 
 - 가설: H = W*x + b
 
-
-
 지금까지 생성된 node와 가설 H 노드가 활용하는 node를 이미지로 보이면 다음과 같다.
 
 ![image](https://user-images.githubusercontent.com/58674365/94804065-32f2b500-0425-11eb-87b5-3bae4ee5d223.png)
 
-
-
-
+<br><br>
 
 ## 5. Cost function, Loss function(비용함수) 설정
 
@@ -87,15 +77,13 @@ b = tf.Variable(tf.random_normal([1]), name = 'bias')
 cost = tf.reduce_mean(tf.square(H - y))
 ```
 
-
+<br>
 
 cost 함수 node는 H와 y의 node를 사용한다. 이미지로 보면 다음과 같다.
 
 ![image](https://user-images.githubusercontent.com/58674365/94804324-967ce280-0425-11eb-9d1b-42418979f137.png)
 
-
-
-
+<br><br>
 
 ## 6. Train node 설정
 
@@ -110,15 +98,13 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)
 train = optimizer.minimize(cost)
 ```
 
-
+<br>
 
 optimizer와 train의 node 생성이 완료되었다. train 실행 시 모든 node가 실행된다. 
 
 ![image](https://user-images.githubusercontent.com/58674365/94804580-025f4b00-0426-11eb-90ea-53ed68ab222e.png)
 
-
-
-
+<br><br>
 
 ## 7. Runner(session) 설정 및 변수 초기화
 
@@ -134,9 +120,7 @@ sess = tf.Session()
 sess.run(tf.global_variables_initializer()) 
 ```
 
-
-
-
+<br><br>
 
 ## 8. Learning 작업 (학습)
 
@@ -158,7 +142,7 @@ for step in range(3000):
         print(f'W값: {W_val}, cost값:{cost_val}, bias값:{b_val}') 
 ```
 
-
+<br>
 
 위의 코드를 실행한, 3000번 돌면서 train을 실행시키는 중간마다 출력한 값을 확인해보면 다음과 같다.
 
@@ -168,9 +152,7 @@ for step in range(3000):
 
 train은 값이 없기에 값이 안나와서 _로 wraping 시키고, 나머지는w_val, cost_val, b_val에 입력시켰다. train만 실행시키면 되지만 굳이 W, cost,b를 넣은 이유는 값을 출력하면서 확인하기 위함이었다. 결과적으로 W와 b의 값을 찾아내서 H 가설을 만들었고, 이제 가설 실행을 통해 예측이 가능해졌다.
 
-
-
-
+<br><br>
 
 ##  9, Prediction
 
@@ -179,4 +161,3 @@ x의 값이 200인 경우를 예측한다면?
 ```python
 print(sess.run(H,feed_dict={ x: 200 }))
 ```
-
