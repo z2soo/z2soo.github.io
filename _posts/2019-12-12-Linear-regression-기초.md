@@ -1,7 +1,7 @@
 ---
 title: "Linear regression 기초"
 categories: 
-  - Machine/Deep learning 
+  - MACHINE/DEEP LEARNING 
 tags:
   - python
   - machine learning

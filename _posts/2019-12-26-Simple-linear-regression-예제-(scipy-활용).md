@@ -1,7 +1,7 @@
 ---
 title: "Simple linear regression 예제 (scipy 활용)"
 categories: 
-  - Machine/Deep learning 
+  - MACHINE/DEEP LEARNING
 tags:
   - python
   - machine learning

@@ -1,7 +1,7 @@
 ---
 title: "Simple linear regression 과정"
 categories: 
-  - Machine/Deep learning 
+  - MACHINE/DEEP LEARNING
 tags:
   - python
   - machine learning

@@ -1,7 +1,7 @@
 ---
 title: "Logistic regression 예제 (대학원 입학 예측)"
 categories: 
-  - Machine/Deep learning 
+  - MACHINE/DEEP LEARNING
 tags:
   - python
   - machine learning

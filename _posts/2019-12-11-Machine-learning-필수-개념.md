@@ -1,7 +1,7 @@
 ---
 title: "Machine learning 필수 개념"
 categories: 
-  - Machine/Deep learning 
+  - MACHINE/DEEP LEARNING
 tags:
   - python
   - machine learning

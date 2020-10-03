@@ -1,7 +1,7 @@
 ---
 title: "Multiple linear regression 예제 (sklearn 활용)"
 categories: 
-  - Machine/Deep learning 
+  - MACHINE/DEEP LEARNING
 tags:
   - python
   - machine learning
