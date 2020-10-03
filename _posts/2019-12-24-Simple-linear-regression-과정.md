@@ -1,5 +1,5 @@
 ---
-title: "Simple linear regression 활용 머신러닝 과정"
+title: "Simple linear regression 과정"
 categories: 
   - Machine/Deep learning 
 tags:

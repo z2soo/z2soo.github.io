@@ -1,5 +1,5 @@
 ---
-title: "Multiple linear regression 활용 머신러닝 예제 (sklearn 활용)"
+title: "Multiple linear regression 머신러닝 예제 (sklearn 활용)"
 categories: 
   - Machine/Deep learning 
 tags:

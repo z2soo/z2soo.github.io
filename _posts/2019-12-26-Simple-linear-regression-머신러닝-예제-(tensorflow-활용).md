@@ -1,5 +1,5 @@
 ---
-title: "Simple linear regression 활용 머신러닝 예제 (tensorflow 활용)"
+title: "Simple linear regression 머신러닝 예제 (tensorflow 활용)"
 categories: 
   - Machine/Deep learning 
 tags:
