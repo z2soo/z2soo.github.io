@@ -1,5 +1,5 @@
 ---
-title: "Simple linear regression 머신러닝 예제 (scipy 활용)"
+title: "Simple linear regression 예제 (scipy 활용)"
 categories: 
   - Machine/Deep learning 
 tags:
