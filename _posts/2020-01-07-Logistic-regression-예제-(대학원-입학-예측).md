@@ -35,7 +35,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 - **dataframe이름.corr( )** 
   - 해당 데이터 프레임 (전체)의 상관관계를 보여줌
-- lambda x 
+- **lambda x** 
   - x에 대한 간단한 함수식
 - **dataframe이름.apply( lambda x : 일회성 함수 설정 )** 
   - 해당 데이터프레임에 함수 적용
@@ -68,9 +68,13 @@ display(df)
 
 
 
+
+
 상관계수는 다음과 같다.
 
 ![image](https://user-images.githubusercontent.com/58674365/94992849-ae8c6780-05c7-11eb-981e-ad16e949e264.png)
+
+
 
 
 
