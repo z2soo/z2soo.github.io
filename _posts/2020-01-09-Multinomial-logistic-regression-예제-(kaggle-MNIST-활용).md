@@ -1,5 +1,5 @@
 ---
-title: "Multinomial logistic regression 예제 (kaggle 활용 MNIST)"
+title: "Multinomial logistic regression 예제 (kaggle MNIST 활용)"
 categories: 
   - MACHINE/DEEP LEARNING
 tags:

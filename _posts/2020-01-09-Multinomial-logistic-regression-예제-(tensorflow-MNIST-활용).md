@@ -1,5 +1,5 @@
 ---
-title: "Multinomial logistic regression 예제 (tensorflow 활용 MNIST)"
+title: "Multinomial logistic regression 예제 (tensorflow MNIST 활용)"
 categories: 
   - MACHINE/DEEP LEARNING
 tags:
