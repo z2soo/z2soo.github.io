@@ -38,7 +38,7 @@ Label을 추가해서 Hello world! 를 입력하고, view 생성이 제대로 �
 
 실행시 다음과 같은 화면이 나온다면 제대로 연결되었으니 계속 진행한다.  
 
-![image-20201006122055874](images/image-20201006122055874.png)
+![image](https://user-images.githubusercontent.com/58674365/95156907-a0f6fd80-07d2-11eb-8979-3fd88050892d.png)
 
 <br><br>
 
@@ -57,8 +57,10 @@ action을 추가함으로써 이동 의미의 화살표 icon이 추가되었다.
 
 ![image](https://user-images.githubusercontent.com/58674365/95155350-eadde480-07ce-11eb-90c3-74cde7bc02fb.png)<br>Navigate to 설정은 다음과 같이 View2로 설정해준다. 
 
-![image-20201006122630203](images/image-20201006122630203.png)<br>
+![image](https://user-images.githubusercontent.com/58674365/95156945-b66c2780-07d2-11eb-807e-2b853da50517.png)
+
+<br>
 
 실행하면 다음과 같이 버튼이 생성되고 클릭하면 View2 창으로 이동한다. 
 
-![image-20201006122647345](images/image-20201006122647345.png)
+![image](https://user-images.githubusercontent.com/58674365/95157000-da2f6d80-07d2-11eb-9b28-784a2d9b69c6.png)
