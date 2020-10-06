@@ -44,5 +44,5 @@ SAP Cloud Cockpit 사이트에서 Neo 평가판 > 서비스 부분으로 들어�
 
 <br>Project를 생성하면 다음과 같은 화면을 확인할 수 있다. 
 
-![image-20201006121102182](images/image-20201006121102182.png)
+![image](https://user-images.githubusercontent.com/58674365/95156785-55445400-07d2-11eb-80fa-b112aeafed29.png)
 
