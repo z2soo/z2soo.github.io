@@ -69,21 +69,9 @@ Query 문자열을 추가한 요청만 가능하다. Query 문자열이 요청 �
 
 인터넷 이용자가 웹 검색 결과 및 사용자 화면 등을 제공받는데 그치지 않고 직접 응용 프로그램과 서비스를 개발할 수 있도록 공개된 개발자를 위한 인터페이스이다. 대부분의 SNS 사이트들은 개발자로 등록하고 인증키를 받아 제공되는 API 사용한다.
 
+<br><br>
 
-
-
-
-
-
-
-
-
-
-
-
-‌
-
-## RSS(Really Simple Syndication/Rich Site Summary) 
+## 10 .RSS(Really Simple Syndication/Rich Site Summary) 
 
 
 
