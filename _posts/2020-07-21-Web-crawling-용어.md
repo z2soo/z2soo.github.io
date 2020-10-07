@@ -1,5 +1,5 @@
 ---
-title: "Web crawling"
+title: "Web crawling 용어"
 categories: 
   - MACHINE/DEEP LEARNING
 tags:
@@ -74,8 +74,6 @@ Query 문자열을 추가한 요청만 가능하다. Query 문자열이 요청 �
 ## 10. RSS(Really Simple Syndication/Rich Site Summary) 
 
 뉴스나 블로그와 같이 콘텐츠 업데이트가 자주 일어나는 웹 사이트에서 업데이트된 정보를 정해진 규격의 XML 형식으로 자동화하여 사용자에게 제공하기 위한 서비스이다. RSS가 등장하기 전에는 원하는 정보를 얻기 위해 해당 사이트를 직접 방문해야 했다. RSS 관련 프로그램(혹은 서비스)을 이용하여 자동 수집이 가능해졌기 때문에, 사용자는 각각의 사이트 방문 없이 최신 정보들만 골라 한 자리에서 볼 수 있다. 
-
-‌
 
 - 정적인 웹 페이지 기술 - HTML , CSS 
 - 동적인 웹 페이지 기술 - JavaScript , Ajax
