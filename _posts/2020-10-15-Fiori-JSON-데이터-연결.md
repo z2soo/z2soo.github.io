@@ -69,5 +69,7 @@ return Controller.extend("STUDYPROJECT03.STUDYPROJECT03.controller.View1", {
 		}
 ```
 
+![image](https://user-images.githubusercontent.com/58674365/96147501-59930e80-0f42-11eb-9f9b-4f4e5ffa04ed.png)
 
+<br>
 
