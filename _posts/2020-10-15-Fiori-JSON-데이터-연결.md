@@ -1,12 +1,12 @@
 ---
-title: ""
+title: "Fiori Json 데이터 연결"
 categories: 
-  - MACHINE/DEEP LEARNING
+  - FIORI
 tags:
-  - python
-  - machine learning
-  - deep learning
-  - data analysis
+  - fiori
+  - sap
+  - javascript
+  - ui5
 toc: true
 ---
 
