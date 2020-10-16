@@ -75,5 +75,9 @@ return Controller.extend("STUDYPROJECT03.STUDYPROJECT03.controller.View1", {
 
 combo box 또한 넣어준다. view xml 레이아웃을 사용해도 되고, 직접 타이핑해도 된다. 
 
+![image](https://user-images.githubusercontent.com/58674365/96263951-9de3e480-0ffe-11eb-806a-471aab41559d.png)
 
+![image](https://user-images.githubusercontent.com/58674365/96263992-adfbc400-0ffe-11eb-92df-f84e4927e263.png)
+
+<br>
 
