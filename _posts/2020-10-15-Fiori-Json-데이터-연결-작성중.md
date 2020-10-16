@@ -81,3 +81,22 @@ combo box 또한 넣어준다. view xml 레이아웃을 사용해도 되고, 직
 
 <br>
 
+지금까지 한 부분을 실행하고 개발자 도구 source에서 확인해보면 다음과 같다. 
+
+![image](https://user-images.githubusercontent.com/58674365/96264058-c1a72a80-0ffe-11eb-861c-f5f152064fe5.png)
+
+<br>
+
+Break-point를 걸어주고 버튼을 눌러 확인해본다.
+
+![image](https://user-images.githubusercontent.com/58674365/96264206-ebf8e800-0ffe-11eb-89e0-b8243ecd570b.png)
+
+<br>
+
+처음에는 undefined, 다시 하니 oModel에 데이터가 담기는 것을 확인할 수 있다. 
+oModel이 코어에 등록되고 잘 작동함을 확인했으니 이제 값을 넣어보도록 한다. 
+
+![image](https://user-images.githubusercontent.com/58674365/96264252-f5825000-0ffe-11eb-84d9-bab7eaedea6e.png)
+
+<br>
+
