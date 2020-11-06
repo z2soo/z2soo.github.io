@@ -12,13 +12,124 @@ toc: true
 
 필드 카탈로그는 ALV에서 조회되는 칼럼들의 필드 정보를 포함하는 slis_t_fieldcat_alv 타입의 테이블 구조를 가진다. ALV는 필드 카탈로그 정보를 저장하는 internal table을 이용해 필드 타입을 인식하게 된다. 예를 들어, 필드의 타입과 화면에 보여줄 필드 길이를 지정할 수 있다. 그리고 체크박스, 라디오 버튼으로 보이게 하고, 필드 수정이 가능하게 하는 등 많은 역활을 하게 된다.
 
-Grid를 이용힌 ALV와 같이 필드 카탈로그를 정의하는 방법은 3 가지가 있다. 
+<br>
 
-- ABAP Dictionary 오브젝트를 이용하는 방법
-- 프로그램 내에서 스크립트로 수정으로 구성하는 방법: 필드 카탈로그
-- 위의 두 방법을 혼합하여 사용하는 방법
+### Field catalog 생성 방법
 
-마지막 방법의 경우 ABAP Dictionary 오브젝트 구조체와 필드 카탈로그에 같은 필드가 존재하게 되면, 필드 카탈로그에 정의한 필드가 높은 우선순위를 가진다.
+Grid를 이용힌 ALV와 같이 필드 카탈로그를 정의하는 방법은 3 가지가 있다. 마지막 방법의 경우 ABAP Dictionary 오브젝트 구조체와 필드 카탈로그에 같은 필드가 존재하게 되면, 필드 카탈로그에 정의한 필드가 높은 우선순위를 가진다.
+
+- ABAP Dictionary 오브젝트를 이용해 자동으로 구성하는 방법
+- 프로그램 내에서 스크립트로 수동으로 구성하는 방법 (필드 카탈로그)
+- 위의 두 방법을 혼합하여 사용하는 방법<br>
+
+### 1) 자동 구성
+
+ALV를 출력하는 메소드를 사용할 때, `I_STRUCTURE_NAME`에 구조명을 넣어서 구조와 똑같이 필드 카탈로그를 구성한다. 이런 식으로 구성하면 `MARA` 테이블과 동일한 구조의 필드 카탈로그가 자동 생성되며, 사용하는 구조는 `TABLES`로 선언되어 있어야 한다. 
+
+```sql
+CALL METHOD g_alv->set_table_foe_first_display
+	EXPORTING
+		i_struacture_name		=		'MARA'
+```
+
+<br>
+
+### 2) 수동 구성
+
+ABAP Dictionary 오브젝트 중 구조체 하나 전체가 아닌 부분적으로 특정 필드만 ALV에 구현하고 싶은 경우 필드를 하나씩 입력하여 필드 카탈로그를 생성하는 방법이다. `IT_FIELDCATALOG`를 사용한다. 
+이 때, 수동으로 구성하는 필드 카탈로그는 ALV 출력 구문 전에 넣어줘야 한다.
+
+```sql
+*1. 필드 카탈로그 속성을 가진 구조를 참조하는 구조체를 선언
+DATA: gs_fieldcat TYPE lvc_s_fcat,
+      gt_fieldcat TYPE lvc_t_fcat.
+      
+*2. 필드 카탈로그 구성      
+gs_fieldcat-fieldname = 'VBELN'.	#필드명
+gs_fieldcat-coltext = '판매문서'. 	 #컬럼명 설정
+gs_fieldcat-just = 'C'. 			#가운데 정렬
+gs_fieldcat-key = 'X'. 				#키값 고정
+gs_fieldcat-hotspot = 'X'. 			#핫스팟
+APPEND gs_fieldcat TO gt_fieldcat.  
+CLEAR: gs_fieldcat.
+
+gs_fieldcat-fieldname = 'NETWR'.
+gs_fieldcat-coltext = '정가'.
+gs_fieldcat-just = 'C'.
+gs_fieldcat-currency = 'KRW'.		 #통화필드 하드코딩
+gs_fieldcat-cfieldname = 'WAERK'. 	 #참조한 통화단위에 대한 필드이름, 통화필드 참조해서 출력
+APPEND gs_fieldcat TO gt_fieldcat. 
+CLEAR gs_fieldcat.      
+      
+*3. ALV 출력 메소드에 필드 카탈로그 구조 사용
+CALL METHOD g_alv->set_table_foe_first_display
+	CHANGING
+		it_outtab			=		gt_tab
+		it_fieldcatalog		=		gt_fieldcat
+```
+
+<br>
+
+### 3) Function 사용
+
+- LVC_FIELDCATALOG_MERGE: DB Dictionary 구성원 중 구조체로부터 Field Catalog를 생성
+
+위에서는 수동으로 구성한 field catalog를 `LVC_FIELDCATALOG_MERGE` 함수를 사용하여 생성해준다. `LVC_FIELDCATALOG_MERGE` function으로는 ABAP Dictionary 구조체만 merge가 가능하하고, Internal table은 merge가 불가능하다. Internal table merge를 위해서는 `REUSE_ALV_FIELDCATALOG_MERGE`를 사용해야 한다. 
+
+다음 코드를 작성하여 디버깅하면 `LVC_FIELDCATALOG_MERGE`에 대한 감이 잡힐 것이다. 
+참고로 `REUSE_FIELDCATALOG_MERGE`랑 기능은 유사하나 다른 함수임에 유의하자!
+
+```sql
+# LVC_FIELDCATALOG_MERGE function에 대한 이해를 돕기 위한 코드 
+
+SELECTION-SCREEN BEGIN OF BLOCK SEL_BLOCK WITH FRAME TITLE FRM_TITL.
+  PARAMETERS : PA_TAB TYPE DD02L-TABNAME OBLIGATORY.
+SELECTION-SCREEN END OF BLOCK SEL_BLOCK.
+
+DATA: GT_FIELDCAT TYPE LVC_T_FCAT,
+      GS_FIELDCAT TYPE LVC_S_FCAT.
+
+CALL FUNCTION 'LVC_FIELDCATALOG_MERGE'
+  EXPORTING
+    I_STRUCTURE_NAME  = PA_TAB
+  CHANGING
+    CT_FIELDCAT       = GT_FIELDCAT.
+```
+
+단, `LVC_FIELDCATALOG_MERGE`는 class용 (`LVC_T_FCAT`)이고, `REUSE_ALV_FIELDCATALOG_MERGE`는 function용 (`SLIS_T_FIELDCAT_ALV`)이라 두 개 구조가 다르다. 따라서 class로 구현하는 ALV에서 `REUSE_ALV_FIELDCATALOG_MERGE`를 사용하려면 conversion 작업이 필요하다. `LVS_TRANSFER_FROM_SLIS`  function을 이용해 conversion 작업 (function용 fcat → class용 fcat)을 해주고, `LVC_FIELDCAT_COMPLETE ` function으로 마무리해주면 된다.
+
+```
+
+```
+
+```sql
+# 실제 LVC_FIELDCATALOG_MERGE function을 사용해 field catalog를 생성하는 코드
+
+CLEAR   : gt_fieldcat.
+  REFRESH : gt_fieldcat.
+
+  CALL FUNCTION 'LVC_FIELDCATALOG_MERGE'
+    EXPORTING
+      i_structure_name       = 'VBRk'
+    CHANGING
+      ct_fieldcat            = gt_fieldcat
+    EXCEPTIONS
+      inconsistent_interface = 1
+      program_error          = 2
+      OTHERS                 = 3.
+```
+
+만약 특정 필드에 추가 설정을 하고 싶다면 다음과 같은 구문으로 추가해주면 된다. 
+
+```sql
+ LOOP AT gt_fieldcat into gs_fieldcat.
+    IF gs_fieldcat-fieldname = 'VBELN'.
+      gs_fieldcat-coltext = '판매문서번호'.
+      gs_fieldcat-hotspot = 'X'.
+      MODIFY gt_fieldcat FROM gs_fieldcat.
+    ENDIF.
+  ENDLOOP.
+```
 
 <br><br>
 
