@@ -1,5 +1,5 @@
 ---
-title: "ABAP Field catalog 최적화 클래스 개발.md"
+stitle: "ABAP Field catalog 최적화 클래스 개발.md"
 categories: 
   - ABAP
 tags:
@@ -7,6 +7,7 @@ tags:
   - abap study
   - sap
   - field catalog
+  - dynamic table
 toc: true
 ---
 
@@ -235,16 +236,35 @@ method REUSE_FIELD_CATALOG.
   endmethod.
 ```
 
-
-
 <br>
 
 ### 5) Method - SET_DYNAMIC_INTERNAL_TABLE
 
-<br>
+사용자가 입력하는 테이블명에 따라 자동으로 internal table을 구성하는 method이다. 
+Dynamic table 구현에 대한 추가 내용은 이전 Dynamic table 구현 글을 참조하도록 한다. 
 
-```
+```sql
+method SET_DYNAMIC_INTERNAL_TABLE.
 
+     FIELD-SYMBOLS : <ft_table> TYPE ANY TABLE,
+                    <fs_table> TYPE any.
+
+    CALL METHOD cl_alv_table_create=>create_dynamic_table
+      EXPORTING
+        it_fieldcatalog = i_fieldcat
+      IMPORTING
+        ep_table        = et_table.
+
+
+    ASSIGN et_table->* TO <ft_table>.
+
+    CREATE DATA es_table LIKE LINE OF <ft_table>.
+    ASSIGN es_table->* TO <fs_table>.
+
+
+#여기까지가 internal table 발췌부분
+
+endmethod.
 ```
 
 
