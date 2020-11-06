@@ -1,5 +1,5 @@
 ---
-title: "ABAP Dynamic table 구현.md"
+title: "ABAP Dynamic table 구현 작성중.md"
 categories: 
   - ABAP
 tags:
