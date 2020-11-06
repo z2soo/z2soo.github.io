@@ -1,10 +1,12 @@
 ---
-title: "ABAP Field catalog 최적화 클래스 개발 작성중.md"
+title: "ABAP Field catalog 최적화 클래스 개발.md"
 categories: 
   - ABAP
 tags:
   - abap
+  - abap study
   - sap
+  - field catalog
 toc: true
 ---
 
@@ -134,6 +136,118 @@ CLEAR   : gt_fieldcat.
 <br><br>
 
 ## 2. Field catalog 최적화 클래스 개발
+
+### 1) Class / Interface 생성
+
+Field catalog를 생성하는 최적화 클래스를 T-Code SE80에서 생성해준다. 
+
+![image](https://user-images.githubusercontent.com/58674365/98358260-c2fdcd00-2069-11eb-84d6-6cddb140abcb.png)
+
+<br>
+
+### 2) Attribute 및 Method 생성
+
+ Class 내에 속한 method와 method 내에서 사용할 변수를 생성해준다. 
+
+![image](https://user-images.githubusercontent.com/58674365/98358984-de1d0c80-206a-11eb-8db8-32125508cf96.png)<br>
+
+![image](https://user-images.githubusercontent.com/58674365/98358772-8ed6dc00-206a-11eb-9c28-d13d5d469d28.png)<br>
+
+![image](https://user-images.githubusercontent.com/58674365/98358953-d198b400-206a-11eb-8ef0-3b6c9dd28cb8.png)
+
+<br>
+
+### 3) Method - LVC_FIELD_CATALOG
+
+```sql
+method LVC_FIELD_CATALOG.
+  
+    clear : gt_fcat.
+
+    CALL FUNCTION 'LVC_FIELDCATALOG_MERGE'
+      EXPORTING
+        i_structure_name       = i_db_table
+*       I_INTERNAL_TABNAME     = l_table
+      CHANGING
+        ct_fieldcat            = gt_fcat
+      EXCEPTIONS
+        inconsistent_interface = 1
+        program_error          = 2
+        OTHERS                 = 3.
+
+    IF sy-subrc EQ 0.
+      e_field_catalog = gt_fcat.
+    ENDIF.
+    
+endmethod.
+```
+
+<br>
+
+### 4) Method - REUSE_FIELD_CATALOG
+
+```sql
+method REUSE_FIELD_CATALOG.
+
+# Header Line이 있는 internal table 이름을 exporting parameter에 기술
+# LVC_T_FCAT 데이터 타입의 internal table을 선언      
+    
+    DATA: gs_sflight TYPE          slis_fieldcat_alv,
+          gt_sflight TYPE          slis_t_fieldcat_alv.
+    DATA: gt_scarr   TYPE TABLE OF sflight.
+    
+    CLEAR: GT_FCAT.
+    
+    CALL FUNCTION 'REUSE_ALV_FIELDCATALOG_MERGE'
+      EXPORTING
+        i_program_name         = sy-cprog
+        i_internal_tabname     = i_internal_table
+        i_inclname             = sy-cprog
+      CHANGING
+        ct_fieldcat            = gt_fieldcat
+      EXCEPTIONS
+        inconsistent_interface = 1
+        program_error          = 2
+        OTHERS                 = 3.
+
+    IF sy-subrc EQ 0.
+
+      CLEAR gs_fieldcat.
+      LOOP AT gt_fieldcat INTO gs_fieldcat.
+        gs_fcat-fieldname  = gs_fieldcat-fieldname.
+        gs_fcat-col_pos    = gs_fieldcat-col_pos.
+        gs_fcat-row_pos    = gs_fieldcat-row_pos.
+        gs_fcat-ref_table  = gs_fieldcat-ref_tabname.
+        gs_fcat-ref_field  = gs_fieldcat-ref_fieldname.
+        gs_fcat-intlen     = gs_fieldcat-intlen.
+        gs_fcat-inttype    = gs_fieldcat-inttype.
+        gs_fcat-datatype   = gs_fieldcat-datatype.
+        gs_fcat-checktable = gs_fieldcat-checkbox.
+        gs_fcat-scrtext_l  = gs_fieldcat-seltext_l.
+        gs_fcat-scrtext_s  = gs_fieldcat-seltext_s.
+        gs_fcat-scrtext_m  = gs_fieldcat-seltext_m.
+        APPEND gs_fcat TO gt_fcat.
+      ENDLOOP.
+
+      e_field_catalog = gt_fcat.
+    ENDIF.
+    
+  endmethod.
+```
+
+
+
+<br>
+
+### 5) Method - SET_DYNAMIC_INTERNAL_TABLE
+
+<br>
+
+```
+
+```
+
+
 
 
 
