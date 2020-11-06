@@ -1,5 +1,5 @@
 ---
-title: "ABAP Field catalog 최적화 작성중.md"
+title: "ABAP Field catalog 최적화 클래스 개발 작성중.md"
 categories: 
   - ABAP
 tags:
@@ -19,3 +19,10 @@ Grid를 이용힌 ALV와 같이 필드 카탈로그를 정의하는 방법은 3 
 - 위의 두 방법을 혼합하여 사용하는 방법
 
 마지막 방법의 경우 ABAP Dictionary 오브젝트 구조체와 필드 카탈로그에 같은 필드가 존재하게 되면, 필드 카탈로그에 정의한 필드가 높은 우선순위를 가진다.
+
+<br><br>
+
+## 2. Field catalog 최적화 클래스 개발
+
+
+
