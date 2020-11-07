@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://z2soo.github.io/blog/sitemap.xml
