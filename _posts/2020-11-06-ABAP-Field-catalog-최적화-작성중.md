@@ -279,6 +279,15 @@ method REUSE_FIELD_CATALOG.
   endmethod.
 ```
 
+![image](https://user-images.githubusercontent.com/58674365/98432310-5d105480-2100-11eb-8e31-6dc70a342af4.png)<br>
+![image](https://user-images.githubusercontent.com/58674365/98432319-6699bc80-2100-11eb-9834-e027ab9d0dba.png) 
+
+마찬가지로 attributes와 parameter를 설정해줘야 한다.
+
+
+
+
+
 <br>
 
 ### 5) Method - SET_DYNAMIC_INTERNAL_TABLE
