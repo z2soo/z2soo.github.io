@@ -213,9 +213,16 @@ endmethod.
 ![image](https://user-images.githubusercontent.com/58674365/98429240-d7cd7580-20e8-11eb-92ee-3d7c2900f6b6.png)
 
 해당 method가 제대로 생성되었는지 DB table 예시로 `SFLIGHT` 을 넣어 실행해 확인해보자. 
-![image](https://user-images.githubusercontent.com/58674365/98429436-e5372f80-20e9-11eb-9e73-0c50dcaac8d6.png)
 
+![image](https://user-images.githubusercontent.com/58674365/98431821-2c2e2080-20fc-11eb-8a1a-31d3696e608d.png)<br>
 
+![image](https://user-images.githubusercontent.com/58674365/98429436-e5372f80-20e9-11eb-9e73-0c50dcaac8d6.png)<br>
+
+![image](https://user-images.githubusercontent.com/58674365/98431858-816a3200-20fc-11eb-8662-0ab87034f8ce.png)<br>
+
+![image](https://user-images.githubusercontent.com/58674365/98431854-77483380-20fc-11eb-9061-2ea62b5e22db.png)
+
+실행한 결과 DB SFLIGHT 테이블 필드를 가지고 field catalog가 생성되었음을 확인할 수 있다. 이 결과 값이 `LVC_FIELD_cATALOG` function  실행 결과와 동일한 값인지 알기 원한다면 T-Code SE37 에서 function을 실행하여 대조해보면 된다.
 
 <br>
 
