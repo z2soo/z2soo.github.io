@@ -282,17 +282,25 @@ method REUSE_FIELD_CATALOG.
 ![image](https://user-images.githubusercontent.com/58674365/98432310-5d105480-2100-11eb-8e31-6dc70a342af4.png)<br>
 ![image](https://user-images.githubusercontent.com/58674365/98432319-6699bc80-2100-11eb-9834-e027ab9d0dba.png) 
 
-마찬가지로 attributes와 parameter를 설정해줘야 한다.
+마찬가지로 attributes와 parameter를 설정해줘야 한다. Attribute는 이미 초기에 설정해두었기 때문에 importing, exporting에 대한 parameter를 다음과 같이 설정해준다. 
 
-
-
-
+![image](https://user-images.githubusercontent.com/58674365/98432340-9a74e200-2100-11eb-88e5-14727009af48.png)<br>
+![image](https://user-images.githubusercontent.com/58674365/98432468-e5432980-2101-11eb-8bd0-9b691e909f90.png)
 
 <br>
 
+마찬가지로 method가 제대로 생성되었는지 실행하여 확인해본다. 
+
+![image](https://user-images.githubusercontent.com/58674365/98432491-1b80a900-2102-11eb-88f1-72510d91d2f8.png)<br>
+
 ### 5) Method - SET_DYNAMIC_INTERNAL_TABLE
 
-사용자가 입력하는 테이블명에 따라 자동으로 internal table을 구성하는 method이다. 
+사용자가 입력하는 테이블명에 따라 자동으로 internal table을 구성하는 `CL_ALV_TABLE_CREATE` 클래스 내에 존재하는 `CREATE_DYNAMIC_TABLE` method이다. 해당 method는 class builder에서 조회한다. 
+
+- T-Code: SE24
+
+![image](https://user-images.githubusercontent.com/58674365/98434634-eb8ed100-2114-11eb-8a09-c9d2f2ba5531.png)
+
 Dynamic table 구현에 대한 추가 내용은 이전 Dynamic table 구현 글을 참조하도록 한다. 
 
 ```sql
@@ -319,7 +327,55 @@ method SET_DYNAMIC_INTERNAL_TABLE.
 endmethod.
 ```
 
+![image](https://user-images.githubusercontent.com/58674365/98432628-7b2b8400-2103-11eb-984c-c873412bcb30.png)
+
+마찬가지로 attribute와 parameter에 대해 설정해준다. 이때, `CREATE_DYNAMIC_TABLE` 는 function이 아닌`CL_ALV_TABLE_CREATE` 클래스 내에 존재하는 method임에 유의해서 조회 후 알맞는 타입을 입력해준다. 
 
 
 
+<br><br>
+
+## 2. 코드
+
+### LVC_FIELD_CATALOG
+
+```
+
+```
+
+<br>
+
+### REUSE_FIELD_CATALOG
+
+```
+
+```
+
+<br>
+
+### SET_DYNAMIC_INTERNAL_TABLE
+
+```sql
+  method SET_DYNAMIC_INTERNAL_TABLE.
+    
+*개발자가 입력한 Structure 기준으로 Dynamic Table을 구성한다.
+    FIELD-SYMBOLS : <ft_table> TYPE ANY TABLE,
+                    <fs_table> TYPE any.
+
+    CALL METHOD cl_alv_table_create=>create_dynamic_table
+      EXPORTING
+        it_fieldcatalog = i_fieldcat
+      IMPORTING
+        ep_table        = et_table.
+
+
+    ASSIGN et_table->* TO <ft_table>.
+
+    CREATE DATA es_table LIKE LINE OF <ft_table>.
+    ASSIGN es_table->* TO <fs_table>.
+
+
+"여기까지가 internal table 발췌"
+  endmethod.
+```
 
