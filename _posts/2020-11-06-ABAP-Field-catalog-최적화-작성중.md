@@ -1,5 +1,5 @@
 ---
-stitle: "ABAP Field catalog 최적화 클래스 개발.md"
+stitle: "ABAP Field catalog 최적화 클래스 개발"
 categories: 
   - ABAP
 tags:
@@ -22,8 +22,12 @@ toc: true
 Grid를 이용힌 ALV와 같이 필드 카탈로그를 정의하는 방법은 3 가지가 있다. 마지막 방법의 경우 ABAP Dictionary 오브젝트 구조체와 필드 카탈로그에 같은 필드가 존재하게 되면, 필드 카탈로그에 정의한 필드가 높은 우선순위를 가진다.
 
 - ABAP Dictionary 오브젝트를 이용해 자동으로 구성하는 방법
+
 - 프로그램 내에서 스크립트로 수동으로 구성하는 방법 (필드 카탈로그)
-- 위의 두 방법을 혼합하여 사용하는 방법<br>
+
+- 위의 두 방법을 혼합하여 사용하는 방법
+
+  <br>
 
 ### 1) 자동 구성
 
@@ -101,10 +105,6 @@ CALL FUNCTION 'LVC_FIELDCATALOG_MERGE'
 
 단, `LVC_FIELDCATALOG_MERGE`는 class용 (`LVC_T_FCAT`)이고, `REUSE_ALV_FIELDCATALOG_MERGE`는 function용 (`SLIS_T_FIELDCAT_ALV`)이라 두 개 구조가 다르다. 따라서 class로 구현하는 ALV에서 `REUSE_ALV_FIELDCATALOG_MERGE`를 사용하려면 conversion 작업이 필요하다. `LVS_TRANSFER_FROM_SLIS`  function을 이용해 conversion 작업 (function용 fcat → class용 fcat)을 해주고, `LVC_FIELDCAT_COMPLETE ` function으로 마무리해주면 된다.
 
-```
-
-```
-
 ```sql
 # 실제 LVC_FIELDCATALOG_MERGE function을 사용해 field catalog를 생성하는 코드
 
@@ -138,6 +138,8 @@ CLEAR   : gt_fieldcat.
 
 ## 2. Field catalog 최적화 클래스 개발
 
+Field catalog의 필드명을 하나씩 직접 설정해줘야 한다는 것에 번거로움을 느껴서 찾아보니 DB table 혹 internal table을 가지고 자동 field catalog 생성을 해주는 function이 존재했다. 그래서 이 method들을 가지고 field catalog 생성과 관련된 클래스를 하나 생성해보려고 한다. <br>
+
 ### 1) Class / Interface 생성
 
 Field catalog를 생성하는 최적화 클래스를 T-Code SE80에서 생성해준다. 
@@ -159,6 +161,21 @@ Field catalog를 생성하는 최적화 클래스를 T-Code SE80에서 생성해
 <br>
 
 ### 3) Method - LVC_FIELD_CATALOG
+
+`LVC_FIELD_CATALOG` 를 활용하여 DB Table의 정보로 field catalog를 자동 생성해주는 method를 만들어본다. 
+
+위에서 한 번에 method를 정의해 줬지만, 하나씩 생성한 후 정상적으로 실행되는지 확인해주고 다음 method를 생성해줘야 한다. 참고로 class는 T-Code SE80 외에도 class builder에서도 생성 및 조회가 가능하다. 
+
+- T-Code SE24: Class Builder
+
+![image](https://user-images.githubusercontent.com/58674365/98429011-9092b500-20e7-11eb-9bbb-da5c1fc79246.png)<br>
+
+![image](https://user-images.githubusercontent.com/58674365/98429030-a7d1a280-20e7-11eb-80fe-c9496974a868.png)
+
+<br>
+
+source code에 들어가서 다음 코드를 작성해준다. 
+위에서 `GT_FCAT`, `GS_FCAT` 을 attribute로 설정해주었기 때문에 이에 대한 오류는 없지만, `i_db_table`, `e_field_catalog` 에 대한 설정은 없기 때문에 오류가 난다. 
 
 ```sql
 method LVC_FIELD_CATALOG.
@@ -183,9 +200,28 @@ method LVC_FIELD_CATALOG.
 endmethod.
 ```
 
+![image](https://user-images.githubusercontent.com/58674365/98429120-2fb7ac80-20e8-11eb-99dc-bf9dfe7b5f98.png)
+
+따라서 method의 parameters 설정으로 들어가서 다음과 같이 importing, exporting parameter를 설정해준다. Associated type으로는 `LVC_FIELDCATALOG_MERGE` method가 실제 사용하는 type을 찾아서 넣어준다. 
+
+![image](https://user-images.githubusercontent.com/58674365/98429154-61307800-20e8-11eb-92c8-114e05663618.png)
+
+특정 function에 대해 알고 싶다면, 다음과 같이 접근해주면 된다. 
+
+- T-Code SE37: Function Builder
+
+![image](https://user-images.githubusercontent.com/58674365/98429240-d7cd7580-20e8-11eb-92ee-3d7c2900f6b6.png)
+
+해당 method가 제대로 생성되었는지 DB table 예시로 `SFLIGHT` 을 넣어 실행해 확인해보자. 
+![image](https://user-images.githubusercontent.com/58674365/98429436-e5372f80-20e9-11eb-9e73-0c50dcaac8d6.png)
+
+
+
 <br>
 
 ### 4) Method - REUSE_FIELD_CATALOG
+
+`REUSE_FIELD_cATALOG` 를 활용해 header line이 있는 internal table로 field catalog가 자동 생성되는 method를 만들어본다. 
 
 ```sql
 method REUSE_FIELD_CATALOG.
