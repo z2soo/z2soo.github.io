@@ -1,5 +1,5 @@
 ---
-title: "Fiori input label (Demo kit) - 수정중"
+title: "Fiori Input label (Demo kit)"
 categories: 
   - FIORI
 tags:
@@ -46,7 +46,7 @@ toc: true
 
 적용시 다음과 같은 화면을 확인할 수 있다. 
 
-![image](https://user-images.githubusercontent.com/58674365/95181197-f3014880-07fd-11eb-8cbd-65104ad66815.png)
+![image](https://user-images.githubusercontent.com/58674365/95181197-f3014880-07fd-11eb-8cbd-65104ad66815.png)<br>
 
-![image](https://user-images.githubusercontent.com/58674365/95181254-06141880-07fe-11eb-81cc-bf47ebd5a377.png)
+![image](https://user-images.githubusercontent.com/58674365/95181254-06141880-07fe-11eb-81cc-bf47ebd5a377.png)<br>
 ![image](https://user-images.githubusercontent.com/58674365/95181293-0f04ea00-07fe-11eb-8139-8834c82de9d7.png)

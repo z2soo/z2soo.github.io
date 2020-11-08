@@ -331,24 +331,82 @@ endmethod.
 
 마찬가지로 attribute와 parameter에 대해 설정해준다. 이때, `CREATE_DYNAMIC_TABLE` 는 function이 아닌`CL_ALV_TABLE_CREATE` 클래스 내에 존재하는 method임에 유의해서 조회 후 알맞는 타입을 입력해준다. 
 
-
-
 <br><br>
 
 ## 2. 코드
 
 ### LVC_FIELD_CATALOG
 
-```
+```sql
+METHOD lvc_field_catalog.
 
+    clear : gt_fcat.
+
+    CALL FUNCTION 'LVC_FIELDCATALOG_MERGE'
+      EXPORTING
+        i_structure_name       = i_db_table
+*       I_INTERNAL_TABNAME     = l_table
+      CHANGING
+        ct_fieldcat            = gt_fcat
+      EXCEPTIONS
+        inconsistent_interface = 1
+        program_error          = 2
+        OTHERS                 = 3.
+
+
+    IF sy-subrc EQ 0.
+
+      e_field_catalog = gt_fcat.
+
+    ENDIF.
+
+  ENDMETHOD.
 ```
 
 <br>
 
 ### REUSE_FIELD_CATALOG
 
-```
+```sql
 
+    CALL FUNCTION 'REUSE_ALV_FIELDCATALOG_MERGE'
+      EXPORTING
+        i_program_name         = sy-cprog
+        i_internal_tabname     = i_internal_table
+        i_inclname             = sy-cprog
+      CHANGING
+        ct_fieldcat            = gt_fieldcat
+      EXCEPTIONS
+        inconsistent_interface = 1
+        program_error          = 2
+        OTHERS                 = 3.
+
+    IF sy-subrc EQ 0.
+
+      CLEAR gs_fieldcat.
+
+      LOOP AT gt_fieldcat INTO gs_fieldcat.
+
+        gs_fcat-fieldname  = gs_fieldcat-fieldname.
+        gs_fcat-col_pos    = gs_fieldcat-col_pos.
+        gs_fcat-row_pos    = gs_fieldcat-row_pos.
+        gs_fcat-ref_table  = gs_fieldcat-ref_tabname.
+        gs_fcat-ref_field  = gs_fieldcat-ref_fieldname.
+        gs_fcat-intlen     = gs_fieldcat-intlen.
+        gs_fcat-inttype    = gs_fieldcat-inttype.
+        gs_fcat-datatype   = gs_fieldcat-datatype.
+        gs_fcat-checktable = gs_fieldcat-checkbox.
+        gs_fcat-scrtext_l  = gs_fieldcat-seltext_l.
+        gs_fcat-scrtext_s  = gs_fieldcat-seltext_s.
+        gs_fcat-scrtext_m  = gs_fieldcat-seltext_m.
+
+        APPEND gs_fcat TO gt_fcat.
+      ENDLOOP.
+
+      e_field_catalog = gt_fcat.
+    ENDIF.
+
+  ENDMETHOD.
 ```
 
 <br>
@@ -377,5 +435,87 @@ endmethod.
 
 "여기까지가 internal table 발췌"
   endmethod.
+```
+
+<br>
+
+### 테스트용 프로그램
+
+```sql
+*&---------------------------------------------------------------------*
+*& Report ZTEST
+*&---------------------------------------------------------------------*
+*& ver 1.0 2020.10.18
+*&---------------------------------------------------------------------*
+REPORT z_fcat_test.
+
+
+DATA : lo_class TYPE REF TO zrapid_fcat.
+
+*Header Line using Internal Table Definition.
+DATA : BEGIN OF gt_header OCCURS 0.
+    INCLUDE STRUCTURE sflight.
+DATA : END OF gt_header.
+
+
+DATA : gv_internal_table TYPE dd02l-tabname VALUE 'GT_HEADER',
+       gv_db_table       TYPE dd02l-tabname VALUE 'SCARR'.
+
+DATA : gt_fcat TYPE lvc_t_fcat.
+
+
+START-OF-SELECTION.
+
+*Field Catalog Rapid Class Instance.
+  CREATE OBJECT lo_class.
+
+
+*1.인터널 테이블 기준 발췌.
+  lo_class->reuse_field_catalog(
+  EXPORTING
+    i_internal_table = gv_internal_table
+  IMPORTING
+    e_field_catalog = gt_fcat
+  EXCEPTIONS
+    OTHERS = 1 ).
+
+*1.1. Field별 옵션 가공
+
+
+*2.DB 테이블 기준 발췌.
+  lo_class->lvc_field_catalog(
+    EXPORTING
+      i_db_table = gv_db_table
+    IMPORTING
+      e_field_catalog = gt_fcat
+    EXCEPTIONS
+      OTHERS = 1 ).
+*2.1. Field별 옵션 가공
+
+
+*3.인터널 테이블 자동생성(Create Dynamic Table Field)
+*사전준비
+*1.Field Symbol 변수 2, Data객체변수 2
+*2.Field Catalog 인터널 테이블
+*3.Coding Table 필드를 Field Symbol 인터널 테이블로 구성하기.(onGoing)
+  FIELD-SYMBOLS : <fs_table> TYPE any,
+                  <ft_table> TYPE ANY TABLE.
+
+  DATA : ls_table TYPE REF TO data,
+         lt_table TYPE REF TO data.
+
+*Field Catalog 기준 인터널 테이블 동적 생성
+  lo_class->set_dynamic_internal_table(
+   EXPORTING
+     i_fieldcat = gt_fcat
+   IMPORTING
+     es_table = ls_table
+     et_table = lt_table
+     ).
+
+  IF sy-subrc EQ 0.
+    ASSIGN ls_table->* TO <fs_table>. "Structure 생성
+    ASSIGN lt_table->* TO <ft_table>. "Internal Table 생성
+  ENDIF.
 ```
 
