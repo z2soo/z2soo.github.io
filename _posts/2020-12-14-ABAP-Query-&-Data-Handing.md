@@ -61,8 +61,6 @@ SAP에만 존재하는 구조로써 DB에서 가져온 데이터를 Header 및 W
 - DB 기반의 Loop 이기 때문에 EQ만 가능하며, LIKE와 같은 구문 불가
 - 비어있는 테이블로 돌리는 경우 메모리 덤프 발생
 
-<br>
-
 For all entries in 예시 코드는 다음과 같으니 참고하자. 
 
 ```sql
