@@ -59,56 +59,100 @@ SAP에만 존재하는 구조로써 DB에서 가져온 데이터를 Header 및 W
 
 - 정렬 및 중복제거
 - DB 기반의 Loop 이기 때문에 EQ만 가능하며, LIKE와 같은 구문 불가
-- 비어있는 테이블로 돌리는 경우 메모리 덤프 발생
+- 비어있는 테이블로 돌리는 경우 메모리 덤프 발생<br>
 
-For all entries in 예시 코드는 다음과 같으니 참고하자. 
+join이 가능한 경우는 join을 하는 것이 더 빠르지만, join이 불가능한 경우에는 for all entries in을 사용한다. For all entries in 예시 코드는 다음과 같으니 참고하자. 
 
 ```sql
 TABLES: VBAK.
 
 TYPES: BEGIN OF GTY_S_DATA,
-                 ERDAT TYPE VBAK-ERDAT,
-                 VBELN TYPE VBAK-VBELN,
-                 POSNR TYPE VBAP-POSNR,
-                 KWMENG TYPE VBAP-KWMENG,
-                 VRKME TYPE VBAP-VRKME,
-                 BSTKD TYPE VBKD-BSTKD,
-                 BSTKD_E TYPE VBKD-BSTKD_E,
-            END OF GTY_S_DATA.
+         ERDAT   TYPE VBAK-ERDAT,
+         VBELN   TYPE VBAK-VBELN,
+         POSNR   TYPE VBAP-POSNR,
+         KWMENG  TYPE VBAP-KWMENG,
+         VRKME   TYPE VBAP-VRKME,
+         BSTKD   TYPE VBKD-BSTKD,
+         BSTKD_E TYPE VBKD-BSTKD_E,
+       END OF GTY_S_DATA.
 
- TYPES: GTY_T_DATA TYPE TABLE OF GTY_S_DATA.
+TYPES: GTY_T_DATA TYPE TABLE OF GTY_S_DATA.
 
- DATA: GS_DATA TYPE GTY_S_DATA,
-           GT_DATA TYPE GTY_T_DATA.
- DATA: LS_DATA TYPE GTY_S_DATA,
-           LT_DATA TYPE GTY_T_DATA.
+DATA: GS_DATA TYPE GTY_S_DATA,
+      GT_DATA TYPE GTY_T_DATA.
 
-SELECT-OPTIONS: S_ERDAT FOR VBAK-ERDAT, S_VBELN FOR VBAK-VBELN.
+DATA: LT_DATA TYPE GTY_T_DATA.
+
+SELECT-OPTIONS: S_ERDAT FOR VBAK-ERDAT,
+                           S_VBELN FOR VBAK-VBELN.
+
 
 START-OF-SELECTION.
+
   SELECT A~VBELN
-         A~ERDAT
-         B~POSNR
-         B~KWMENG
-         B~VRKME
+             A~ERDAT
+            B~POSNR
+           B~KWMENG
+           B~VRKME
     INTO CORRESPONDING FIELDS OF TABLE GT_DATA
     FROM VBAK AS A INNER JOIN VBAP AS B
-              ON B~VBELN EQ A~VBELN
-    WHERE A~VBELN IN S_VBELN
-    AND   A~ERDAT IN S_ERDAT.
+             ON B~VBELN EQ A~VBELN
+    WHERE A~VBELN  IN S_VBELN
+     AND A~ERDAT IN S_ERDAT.
 
-    LT_DATA = GT_DATA.
+  LT_DATA = GT_DATA.
 
-    SORT LT_DATA BY VBELN.
-    DELETE ADJACENT DUPLICATES FROM LT_DATA COMPARING VBELN.
+  SORT LT_DATA BY VBELN.
+  DELETE ADJACENT DUPLICATES FROM LT_DATA COMPARING VBELN.
 
-   IF LT_DATA IS  NOT INITIAL.
-     DATA: LT_VBKD TYPE TABLE OF VBKD.
-     SELECT *
-       INTO TABLE LT_VBKD
-       FROM VBKD
-        FOR ALL ENTRIES IN LT_DATA
-      WHERE VBELN EQ LT_DATA-VBELN.
-   ENDIF.
+  IF LT_DATA IS  NOT INITIAL.
+    DATA: LT_VBKD TYPE TABLE OF VBKD.
+
+    SELECT *
+      INTO TABLE LT_VBKD
+      FROM VBKD
+       FOR ALL ENTRIES IN LT_DATA
+     WHERE VBELN EQ LT_DATA-VBELN.
+
+    SORT LT_VBKD BY VBELN POSNR.
+  ENDIF.
+
+  LOOP AT  GT_DATA ASSIGNING FIELD-SYMBOL(<LS_DATA>).
+
+**    READ TABLE LT_VBKD WITH  KEY VBELN = <LS_DATA>-VBELN
+**                                 POSNR = <LS_DATA>-POSNR
+**                                 BINARY SEARCH
+**                                 INTO DATA(LS_VBKD).
+**    IF SY-SUBRC = 0.
+**      <LS_DATA>-BSTKD   = LS_VBKD-BSTKD.
+**      <LS_DATA>-BSTKD_E = LS_VBKD-BSTKD_E.
+**    ELSE.
+**      READ TABLE LT_VBKD WITH  KEY VBELN = <LS_DATA>-VBELN
+**                                            BINARY SEARCH
+**                                            INTO LS_VBKD.
+**    	IF SY-SUBRC = 0.
+**      	<LS_DATA>-BSTKD = LS_VBKD-BSTKD.
+**      	<LS_DATA>-BSTKD_E = LS_VBKD-BSTKD_E.
+**      ENDIF.
+**    ENDIF.
+
+
+    READ TABLE LT_VBKD WITH  KEY VBELN = <LS_DATA>-VBELN
+                                 POSNR = <LS_DATA>-POSNR
+                                 BINARY SEARCH
+                                 INTO DATA(LS_VBKD).
+    IF SY-SUBRC <> 0.
+       CLEAR LS_VBKD.
+          READ TABLE LT_VBKD WITH  KEY VBELN = <LS_DATA>-VBELN
+                                   BINARY SEARCH
+                                   INTO LS_VBKD.
+    ENDIF.
+
+      <LS_DATA>-BSTKD   = LS_VBKD-BSTKD.
+      <LS_DATA>-BSTKD_E = LS_VBKD-BSTKD_E.
+
+*    MODIFY GT_DATA FROM LS_DATA.
+
+  ENDLOOP.
 ```
 
