@@ -112,4 +112,27 @@ toc: true
 
 
 - custom보다 docking container 활용
-- 
+- OK_CODE를 PBO에서 CLEAR해주기 
+- TITLE BAR에 직접 입력하기 보다 & 값 하나만 넣어두고 대신 GV_TITLE 변수를 선언해서 TEXT 값을 담아서 이를 참조해서 쓰도록 코드 작성
+  - SCREEN 마다 따로 입력해줄 필요 없음
+  - 이떄 GV_TITLE은 STATUS에서만 사용하니까 STATUS MODLE 내에 DATA 선언해도 되지 않을까 생각? 근데 사실 모듈에 선언되는 데이터는 다 광역으로 선언됨. 그런 의미에서 모듈에서 변수 선언 지양!
+- STATUS 에서 새로운 COMMAND를 만들 때, ICON은 F4로 하기 보다 SE11에서 ICON 테이블에서 보는 것이 더 편리 
+  - CBO로 만든 COMMAND는 보통 단축키를 만들지 않기 떄문에(실수로 누를 경우 때문) 정말 안쓰는 단축키에 설정해준다. 
+  - 만약 권한에 따라 설정할 것이면 STATUUS에 대한 EXCLIDONG 설정을 추가
+- ALV 설정
+  - VARIANT
+    - HANDLE이라는 FIELD가 있음, 나중에 유용하게 사용될 수도
+  - LAYOUT
+  - FIELD CAT
+    - 보통 MECRO 사용: DEFINITION/ENDOFDEFINITION
+    - MERGE FUNCTION 사용
+    - STRUCTURE 구조 읽어들이는 FUNCTION을 활용
+      CL_ABAP_STRCTSESCR
+  - REFRESH 는 특정 경우에만 해주는게 좋음
+    - 화면 상의 BUFFER
+  - ALV 설정 다 뜯어보기
+
+
+
+메크로 사용시 _으로 변수 선언 
+
