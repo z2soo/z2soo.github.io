@@ -6,6 +6,8 @@ tags:
   - abap
   - sap
   - for all entries
+  - cts
+  - internal table
   - sql
 toc: true
 ---
