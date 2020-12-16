@@ -9,6 +9,7 @@ tags:
   - cts
   - internal table
   - sql
+  - nested loop
 toc: true
 ---
 
@@ -59,19 +60,17 @@ SAP에만 존재하는 구조로써 DB에서 가져온 데이터를 Header 및 W
 
 중요한 것은 **사용 전, 다음을 유의하자!**
 
-- 정렬 및 중복제거
-
-  - 중복된 값이 있는 경우 자동으로 한 번만 받아오기 때문에 사용 전 SORT, 중복제거 실행
+- **정렬 및 중복제거**
+- 중복된 값이 있는 경우 자동으로 한 번만 받아오기 때문에 사용 전 SORT, 중복제거 실행
   - `SELECT * `이 아닌  중복되지 않을 필드 설정
-- 비교 구분 불가
-
-  - DB 기반의 Loop 이기 때문에 EQ만 가능하며, LIKE, BETWEEN, IN 비교 구문 불가
+  - **정렬 및 중복제거의 기준이 된 필드가 `SELECT` 의 `WHERE` 에서 조건으로 들어가야 됨**
+- **비교 구분 불가**
+- DB 기반의 Loop 이기 때문에 EQ만 가능하며, LIKE, BETWEEN, IN 비교 구문 불가
   - 마찬가지로 WHERE 조건에서 EQ 사용시, 타입도 동일해야 함
-- 모수 테이블 값 확인
-
-  - 기준이 되는 테이블에 데이터가 없는 상태(INITIAL)면 FULL SCAN을 하여 덤프 발생
+- **모수 테이블 값 확인**
+- 기준이 되는 테이블에 데이터가 없는 상태(INITIAL)면 FULL SCAN을 하여 덤프 발생
   -  `IF ~ IN NOT INITIAL` 로 체크해주기
-- 집계함수 사용 불가 
+- **집계함수 사용 불가** <br>
 
 S/HANA에서 for all entries in을 지양하고, Loop 안에서 SELECT 하라는 것이 SAP의  가이드지만, 현업에서는 for all entries in 사용이 편리하다고 본다. Loop에서 돌리는 것보다 빠르기 때문이다. Join이 가능한 경우는 join을 하는 것이 더 빠르지만, 불가능한 경우에 for all entries in을 사용한다. For all entries in 예시 코드는 다음과 같으니 참고하자. 
 
@@ -167,4 +166,82 @@ S/HANA에서 for all entries in을 지양하고, Loop 안에서 SELECT 하라는
 *   ENDLOOP.
 	ENDLOOP.
 ```
+
+<br><br>
+
+## 5. Nested Loop
+
+`Nested Loop`은 Loop 안에 또 다른 하나의 Loop를 작성하는 것이다. 사용하는데 있어서 신중해야 하지만 동시에 무조건 쓰이게 되는 구문이다. (SAP 데이터 대부분이 Header와 품목 구조로 이루어져 있기 때문) `Nested Loop`에서 중요한 것은 **사용할 수 밖에 없는 상황에서 어떻게 효율적으로 사용하는지 알고 있는 것**이다. 
+
+예를 통해 알아본다. 물론 아래 경우 `Group by` 와 `Count`를 통해 `SO CNT`  값을 구할 수 있지만 `Nested Loop`을 활용하는 방법을 알아보자. 참고로 `Nested Loop` 을 사용할 때는, `sort` 후에 `read` 해야 함을 알자.
+
+![image](https://user-images.githubusercontent.com/58674365/102315705-f4967c00-3fb7-11eb-8829-e6287d23fdfd.png)
+
+<br>
+
+### Full scan
+
+아래와 같이 코당하면, `LV_SOCNT` 값을 구하기 위해 계속해서 처음 부터 테이블을 읽어들이게 된다. 즉, Full scan을 하는 비효율을 가진다. 보다 효율적인 `Nested loop` 활용을 위해 `SY-TABIX` 코딩을 하도록 한다. 
+
+```sql
+* 오더 건수 체크
+  LOOP.
+    READ TABLE LT_DATA WITH KEY VBELN = <LS_DATA>-VBELN
+                       BINARY SEARCH.
+    IF SY-SUBRC = 0.
+      LOOP AT LT_DATA INTO DATA(LS_DATA).
+        IF LS_DATA-VBELN <> <LS_DATA>-VBELN.
+          <LS_DATA>-SOCNT = LV_SOCNT.
+          CLEAR LV_SOCNT.
+          EXIT.
+        ENDIF.
+
+        LV_SOCNT = LV_SOCNT + 1.
+
+      ENDLOOP.
+    ENDIF.
+  ENDLOOP.
+```
+
+<br>
+
+### SY-TABIX 활용
+
+위의 코드와 비교하면 두 곳의 다른 부분이 존재한다. 
+
+
+
+read table의 가장 중요한 기능 중 하나는 해당 row의 index를 찾는 것! 
+read 했던 table을 loop 돌릴 것이기는 한데, 이를 내가 찾은 위치부터 loop을 돌릴 것 이라고 명시해주면 된다. 
+
+즉, SO NO. 1을 찾았을때 index 1부터 돌리고, SO NO. 2를 찾았을 때 index 4부터 돈다.
+
+보통 read table하면 wa를 사용하는데 우리는 지금 데이터를 각ㅇ하는 것이 아닌, index 번호만을 알고자 하기 떄문에 굳이 wa를 쓰지 않아도 된다. 단, 이떄 구문 오류가 난다. 이를 위해 사용하는 것이 trabsportinf no fields 이다. 단, 이 구문을 쓰고 잘 읽혀졌는지 sy-subrc를 체크해주도록 한다. 
+
+```sql
+* 오더 건수 체크
+  LOOP.
+    READ TABLE LT_DATA WITH KEY VBELN = <LS_DATA>-VBELN
+                       TRANSPORTING NO FIELDS
+*					   위의 코드와 다른 부분 1                       
+                       BINARY SEARCH.
+    IF SY-SUBRC = 0.
+      LOOP AT LT_DATA INTO DATA(LS_DATA) FROM SY-TABIX.
+*					   					 	  위의 코드와 다른 부분 2
+        IF LS_DATA-VBELN <> <LS_DATA>-VBELN.
+          <LS_DATA>-SOCNT = LV_SOCNT.
+          CLEAR LV_SOCNT.
+          EXIT.
+        ENDIF.
+
+        LV_SOCNT = LV_SOCNT + 1.
+
+      ENDLOOP.
+    ENDIF.
+  ENDLOOP.
+```
+
+
+
+
 
