@@ -61,17 +61,17 @@ SAP에만 존재하는 구조로써 DB에서 가져온 데이터를 Header 및 W
 
   - 중복된 값이 있는 경우 자동으로 한 번만 받아오기 때문에 사용 전 SORT, 중복제거 실행
   - `SELECT * `이 아닌  중복되지 않을 필드 설정
-
 - 비교 구분 불가
 
   - DB 기반의 Loop 이기 때문에 EQ만 가능하며, LIKE, BETWEEN, IN 비교 구문 불가
   - 마찬가지로 WHERE 조건에서 EQ 사용시, 타입도 동일해야 함
-
 - 모수 테이블 값 확인
 
   - 기준이 되는 테이블에 데이터가 없는 상태(INITIAL)면 FULL SCAN을 하여 덤프 발생
   -  `IF ~ IN NOT INITIAL` 로 체크해주기
-- 집계함수 사용 불가 <br>join이 가능한 경우는 join을 하는 것이 더 빠르지만, join이 불가능한 경우에는 for all entries in을 사용한다. For all entries in 예시 코드는 다음과 같으니 참고하자. 
+- 집계함수 사용 불가 
+
+S/HANA에서 for all entries in을 지양하고, Loop 안에서 SELECT 하라는 것이 SAP의  가이드지만, 현업에서는 for all entries in 사용이 편리하다고 본다. Loop에서 돌리는 것보다 빠르기 때문이다. Join이 가능한 경우는 join을 하는 것이 더 빠르지만, 불가능한 경우에 for all entries in을 사용한다. For all entries in 예시 코드는 다음과 같으니 참고하자. 
 
 ```sql
 
