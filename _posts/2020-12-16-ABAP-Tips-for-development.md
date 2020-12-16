@@ -105,7 +105,9 @@ toc: true
 
 - loop를 돌 때는 index 번호를 가지고 있어서 modify가 되지만, transporting을 활용해서 특정 필드만 modify 가능. 물론 더 효율적인 방법은 ASSIGN FIELD SYMBOL을 활용하는 것. 굳이 MODIFY 하지 않아도 되기 떄문
 - ALV는 일반적으로 TEMPLATE 사용, 핵심은 DATA HANDLING
-- 
+- MERGE FUNCTION 사용시 덤프, BACKGROUD 돌 때 덤프 난다는 점
+  - 이 중 백그라운드 작업 덤프를 잡기 위해 SY-BTCH IS INITAL 을 확인
+  - 백그라운드 작업을 돌면 0이 들어온다 (1인가..?)
 
 
 
