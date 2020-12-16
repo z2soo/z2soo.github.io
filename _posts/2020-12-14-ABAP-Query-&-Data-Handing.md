@@ -163,8 +163,6 @@ S/HANA에서 for all entries in을 지양하고, Loop 안에서 SELECT 하라는
 *     LS_DATA-KWMENG  = GS_DATA-KWMENG.
 *     COLLECT LS_DATA INTO LT_DATA.
 *   ENDLOOP.
-
-
-    ENDLOOP.
+	ENDLOOP.
 ```
 
