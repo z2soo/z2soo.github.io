@@ -207,27 +207,18 @@ S/HANA에서 for all entries in을 지양하고, Loop 안에서 SELECT 하라는
 
 ### SY-TABIX 활용
 
-위의 코드와 비교하면 두 곳의 다른 부분이 존재한다. 
-
-
-
-read table의 가장 중요한 기능 중 하나는 해당 row의 index를 찾는 것! 
-read 했던 table을 loop 돌릴 것이기는 한데, 이를 내가 찾은 위치부터 loop을 돌릴 것 이라고 명시해주면 된다. 
-
-즉, SO NO. 1을 찾았을때 index 1부터 돌리고, SO NO. 2를 찾았을 때 index 4부터 돈다.
-
-보통 read table하면 wa를 사용하는데 우리는 지금 데이터를 각ㅇ하는 것이 아닌, index 번호만을 알고자 하기 떄문에 굳이 wa를 쓰지 않아도 된다. 단, 이떄 구문 오류가 난다. 이를 위해 사용하는 것이 trabsportinf no fields 이다. 단, 이 구문을 쓰고 잘 읽혀졌는지 sy-subrc를 체크해주도록 한다. 
+위의 코드와 아래 비교하면 두 곳의 다른 부분이 존재한다. 
 
 ```sql
 * 오더 건수 체크
   LOOP.
     READ TABLE LT_DATA WITH KEY VBELN = <LS_DATA>-VBELN
                        TRANSPORTING NO FIELDS
-*					   위의 코드와 다른 부분 1                       
+*					   위의 코드와 다른 부분 2                       
                        BINARY SEARCH.
     IF SY-SUBRC = 0.
       LOOP AT LT_DATA INTO DATA(LS_DATA) FROM SY-TABIX.
-*					   					 	  위의 코드와 다른 부분 2
+*					   					 	  위의 코드와 다른 부분 1
         IF LS_DATA-VBELN <> <LS_DATA>-VBELN.
           <LS_DATA>-SOCNT = LV_SOCNT.
           CLEAR LV_SOCNT.
@@ -241,7 +232,16 @@ read 했던 table을 loop 돌릴 것이기는 한데, 이를 내가 찾은 위�
   ENDLOOP.
 ```
 
+<br>
 
+1. SY-TABIX
+
+   **"`Read table`의 가장 중요한 기능 중 하나는 해당 `Read`한  row의 index를 찾는 것"** 이다. 
+   `Read` 했던 table을 `Loop` 돌릴 때, 내가 찾은 위치부터 `Loop` 돌릴 것 이라고 명시해주기 위해 `SY-TABIX`를 사용한다. 즉, SO NO. 1을 찾았을때 index 1부터 돌리고, SO NO. 2를 찾았을 때 index 4부터 돈다. 
+
+2. trabsportinf no fields
+
+보통 read table하면 wa를 사용하는데 우리는 지금 데이터를 각ㅇ하는 것이 아닌, index 번호만을 알고자 하기 떄문에 굳이 wa를 쓰지 않아도 된다. 단, 이떄 구문 오류가 난다. 이를 위해 사용하는 것이 trabsportinf no fields 이다. 단, 이 구문을 쓰고 잘 읽혀졌는지 sy-subrc를 체크해주도록 한다. 
 
 
 
