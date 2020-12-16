@@ -7,6 +7,8 @@ tags:
   - abap
   - tips
   - excel
+  - read table
+  - for all entries
 toc: true
 ---
 
@@ -102,6 +104,7 @@ toc: true
 ```
 
 - loop를 돌 때는 index 번호를 가지고 있어서 modify가 되지만, transporting을 활용해서 특정 필드만 modify 가능. 물론 더 효율적인 방법은 ASSIGN FIELD SYMBOL을 활용하는 것. 굳이 MODIFY 하지 않아도 되기 떄문
+- ALV는 일반적으로 TEMPLATE 사용, 핵심은 DATA HANDLING
 - 
 
 
