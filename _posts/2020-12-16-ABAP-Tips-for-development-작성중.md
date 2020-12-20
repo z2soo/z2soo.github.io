@@ -1,11 +1,11 @@
 ---
-title: "2020-12-16-ABAP-Tips-for-development"
+title: "ABAP Tips for development"
 categories: 
   - ABAP
 tags:
   - sap
+  - sql
   - abap
-  - tips
   - excel
   - read table
   - for all entries
