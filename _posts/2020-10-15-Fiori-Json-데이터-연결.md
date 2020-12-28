@@ -1,5 +1,5 @@
 ---
-title: "Fiori Json 데이터 연결 작성중"
+title: "Fiori Json 데이터 연결"
 categories: 
   - FIORI
 tags:
@@ -97,6 +97,3 @@ Break-point를 걸어주고 버튼을 눌러 확인해본다.
 oModel이 코어에 등록되고 잘 작동함을 확인했으니 이제 값을 넣어보도록 한다. 
 
 ![image](https://user-images.githubusercontent.com/58674365/96264252-f5825000-0ffe-11eb-84d9-bab7eaedea6e.png)
-
-<br>
-
