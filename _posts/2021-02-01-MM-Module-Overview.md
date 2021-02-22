@@ -1,7 +1,7 @@
 ---
 title: "SAP MM Module Overview"
 categories: 
-  - Module
+  - MODULE
 tags:
   - sap
   - mm module
