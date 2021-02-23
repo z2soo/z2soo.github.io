@@ -12,7 +12,7 @@ toc: true
 
 ### 1. Core 5개 모듈에 대한 흐름을 그리시오.
 
-> Module을 배우면 기준정보, 트랜잭션, 분석 순서로 이어진다는 점 잊지말자!
+> Module을 배우면 기준정보, 트랜잭션, 분석 순서로 이어진다는 점 잊지말자!<br>
 > 기준정보는 하나 생성하면 계속하여 사용할 수 있는 고정적인 값이다.
 
 ![image](https://user-images.githubusercontent.com/58674365/108784822-896ab680-75b3-11eb-9dbc-10df57b4f8a3.png)<br>
