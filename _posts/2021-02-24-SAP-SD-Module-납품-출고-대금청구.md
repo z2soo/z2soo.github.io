@@ -1,5 +1,5 @@
 ---
-title: "SD Module 출하 출고 송장"
+title: "SAP SD Module 납품 출고 대금청구"
 categories: 
   - MODULE
 tags:
@@ -8,6 +8,10 @@ tags:
 toc: true
 ---
 
+> SAP Sales & Distribution 즉, 판매 프로세스는 다음과 같다.<br>판매오더 생성 → 아웃바운드 납품 → 출고전기 → 대금청구<br>이전 포스팅에서 마스터 데이터 및 판매오더 생성 과정을 보았다면, 이번에는 그 이후의 과정을 살펴보도록 한다. 
+
+
+
 ## 1. 조건 레코드
 
 SD의 가격 책정은 가격 계산시 일련의 조건으로 정의된다. 고객, 제품, 주문 수량, 날짜 등의 모든 요소가 가격을 결정하며, 이러한 가격 책정 요소가 SAP 시스템에서 조건 유형으로 정의된다. 이 가격 책정 요소에 대한 가격 책정 정보를 관리하기 위해서는 조건 레코드를 작성해야 한다. 
@@ -15,8 +19,6 @@ SD의 가격 책정은 가격 계산시 일련의 조건으로 정의된다. 고
 - T-VK11: 조건 등록
 
 ![image](https://user-images.githubusercontent.com/58674365/108948420-cb742500-76a5-11eb-85b3-63ebdf24d37e.png)
-
-<BR>
 
 등록된 마스터 데이터가 저장되는 테이블은 다음과 같다.
 
@@ -98,6 +100,8 @@ ex. 신규 가격결정 수행 과정은 다음과 같다.<br>오더의 자재�
 
 ## 3. Delivery Order 생성
 
+아웃바운드 납품은 실제 납품할 품번과 수량을 확정하는 과정이다. 
+
 Delivery Order는 두 가지 방법으로 생성 가능하다. 출하하고자 하는 sales order 번호와 출하 지점을 다 입력하여 조회 및 생성하는 방법과 이전에 만든 sales order에서 바로 납품으로 넘어가는 방법이다. 
 
 - T-VL01: 판매오더 참조
@@ -115,7 +119,7 @@ Delivery Order는 두 가지 방법으로 생성 가능하다. 출하하고자 �
 
 ### T-VA02/VA03
 
-Sales order를 조회하고 바로 납품으로 넘어가는 방법은 다음과 같다. 
+Sales order를 조회하고 바로 납품으로 넘어가는 방법은 다음과 같다. 납품에서 피킹 처리까지 같이할 수 있다.  
 
 ![image](https://user-images.githubusercontent.com/58674365/108952569-0af23f80-76ad-11eb-9f51-58a6b520a395.png)
 
@@ -125,23 +129,19 @@ Sales order를 조회하고 바로 납품으로 넘어가는 방법은 다음과
 
 ## 4. Picking / Packing / Shipment
 
-출하 변경에서 Picking을 생성해준다. 
+출하 변경에서 Picking을 생성해준다. 납품 과정에서 피킹도 같이 처리했다면, 바로 출고 전기 단계로 넘어가면 된다. 
 
 - T-VL02N
 
-![image](https://user-images.githubusercontent.com/58674365/108971398-9c6dab80-76c5-11eb-9a67-b437a4520bd7.png)<BR>
+![image](https://user-images.githubusercontent.com/58674365/108971398-9c6dab80-76c5-11eb-9a67-b437a4520bd7.png)
 
 ### Picking 
 
 피킹, 출고할 자재를 가져온다. SAP WM Module로 상세 관리가 가능하다.
 
-<br>
-
 ### Packing
 
 적하, 가져온 자재를 운송하기 위해 일종의 포장 작업을 진행한다. SAP HU Module로 상세 관리가 가능하다. 
-
-<br>
 
 ### Shipment
 
@@ -151,11 +151,11 @@ Sales order를 조회하고 바로 납품으로 넘어가는 방법은 다음과
 
 ## 5. Goods Issue
 
-[출고 전기에 대한 설명이 잘 되어 있는 블로그][https://soma7321.tistory.com/entry/3-20-SD%ED%8C%90%EB%A7%A4-%EC%B6%9C%EA%B3%A0%EC%A0%84%EA%B8%B0Good-Issue]를 참고하여 출고를 전기해본다. 
+출고전기는 실제로 고객에게 제품을 납품하는 행위를 말한다. 이 과정에서 재고가 감소하는 회계상의 거래가 발생한다. 즉, 매출원가를 인식하게 된다. <br>출고전기는 피킹을 진행한 transaction에서 진행 가능하다. 
 
-- T-VL01
+- T-VL02N
 
-![image](https://user-images.githubusercontent.com/58674365/108956259-c669a280-76b2-11eb-865d-137500c0cb81.png)
+![image](https://user-images.githubusercontent.com/58674365/108971398-9c6dab80-76c5-11eb-9a67-b437a4520bd7.png)
 
 <br><br>
 
