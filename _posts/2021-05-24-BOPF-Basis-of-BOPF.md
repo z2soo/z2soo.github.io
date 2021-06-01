@@ -13,6 +13,7 @@ toc: true
 ---
 
 # 1. Business Object Process Framework basis
+
 ## BOPF란?
 
 Business object processing frame work, 즉 ABAP OO 기반의 프레임워크로 개발의 속도 향상, 표준화, 모듈화가 가능한 서비스와 기능을 제공한다. 이를 통해 개발자는 인프라 개발보다 로직 구현에 더 집중할 수 있게 된다.
@@ -122,7 +123,7 @@ Business object는 service API를 통해서만 접근이 가능하고, business 
 
 <br>
 
-#  3. Action
+# 3. Action
 
 node를 class로 생각한다면, node에 특정한 행위인 operations/methods를 action이라 정의한다.
 단, 개념적으로 action과 OOP의 method가 비슷하지만, BOPF의 action의 범위가 더 크다. 대부분의 attributes level 수정사항이 standard API 메소드를 통해 이루어지기 때문이다. 그 결과, BOPF 노드 정의에서 getter/setter 메소드가 필요없고 보여지지도 않는다. 대신, BOPF action은 large-scale business operations를 위해 활용된다.
