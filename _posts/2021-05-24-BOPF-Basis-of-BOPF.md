@@ -87,9 +87,7 @@ Business object는 service API를 통해서만 접근이 가능하고, business 
 
 `https://www.youtube.com/watch?v=Exk_JZGasWE`
 
-
-
-
+<Br>
 
 # 2. Node
 
@@ -122,9 +120,7 @@ Business object는 service API를 통해서만 접근이 가능하고, business 
 - transient nodes/attributes
   : 검색 혹 계산을 위한 데이터 모델로써, runtime 시에만 존재하고 데이터 베이스에 반영x
 
-
-
-
+<br>
 
 #  3. Action
 
@@ -133,33 +129,25 @@ node를 class로 생각한다면, node에 특정한 행위인 operations/methods
 
 예를 들어, 하나 이상의 sales order에 영향을 주는 delivery라는 action은 다른 node attribute의 값에 영향을 주는 것은 물론 이로 인해 trigger를 야기할 수 있다. 
 
-
-
-
+<Br>
 
 # 4. Determination
 
 business object 인스턴스의 lifecycle 동안 반응이 필요한 event이 있고, 이를 위해 BOPF object model은 determination이라는 것을 제공한다. 데이터 베이스 trigger와 마찬가지로 determination은 실행 조건을 충족하면 BOPF에 의해 자동적으로 수행된다.
 
-
-
-
+<Br>
 
 # 5. Validation
 
 validation 규칙에 대해 개별적으로 로직을 짜기보다 BOPF는 validation rule을 그룹화하도록 한다.  이렇게 그룹화된 validation으로 business object에 대해 유효성 체크가 가능하다. 특정 시점에서 BOPF이 validation을 자동적으로 수행하고 불균등한 데이터를 막는다. 
 
-
-
-
+<br>
 
 # 6. Association
 
 business object를 수행할 때, node가 다른 node와 어떻게 연관되어 있는지 알아야 한다. 이러한 연관 관계를 association이라 한다. 
 
-
-
-
+<Br>
 
 # 7. Query
 
@@ -171,9 +159,7 @@ business object/node를 찾는 로직으로써 BOPF object model에는 두 타�
 - custom queries
   : 복잡한 쿼리를 핸들링하기 위해 사용되며, custom ABAP object class에 정의됨
 
-
-
-
+<br>
 
 # 8. BOPF Client API
 
