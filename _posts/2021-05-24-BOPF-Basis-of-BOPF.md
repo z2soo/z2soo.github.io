@@ -42,31 +42,31 @@ sales order, purchase order와 같은 하나의 비즈니스 단위를 의미한
 
 ## Business object components
 
-- Node
-  : business object의 data modeling을 위해 사용되며 데이터 타입 등을 정의하는 속성을 가짐
-- Action
-  : business object의 서비스 또는 행위를 정의하며 각 노드에 assign됨
-- Association
-  : business object 간의 관계 혹 통합을 의미
-- Determination
-  : business object node의 element로서 특적 조건 충족시 실행하는 internal changing logic
-- Validation
-  : business object node의 element로서 internal checking 즉 유효성 체크를 할 뿐 데이터 변경x
-- Query
-  : 특정 조건에 맞는 business node를 조호
+- **Node**<br>
+  business object의 data modeling을 위해 사용되며 데이터 타입 등을 정의하는 속성을 가짐
+- **Action**<br>
+  business object의 서비스 또는 행위를 정의하며 각 노드에 assign됨
+- **Association**<br>
+  business object 간의 관계 혹 통합을 의미
+- **Determination**<br>
+  business object node의 element로서 특적 조건 충족시 실행하는 internal changing logic
+- **Validation**<br>
+  business object node의 element로서 internal checking 즉 유효성 체크를 할 뿐 데이터 변경x
+- **Query**<br>
+  특정 조건에 맞는 business node를 조호
 
 
 
 ## Basic architecture of BOPF
 
-- Consumer layer / UI layer
-  : 클라이언트는 BOPF의 객체지향 API를 활용해 business object에 접근 가능함
-- Transaction layer
-  : business object node의 변경 사항에 대한 commit, rollback... 등 DB에 반영하는 transaction 처리를 함
-- Runtime layer
-  : business object를 인스턴스화하고, life cycle 이벤트 처리를 하고, 클라이언트 수준의 상호작용에 응답하는데 필요한 작업을 수행함
-- Persistence layer
-  : business object 인스턴스를 DB에 유지하는데 필요한 기능을 제공함
+- **Consumer layer / UI layer** <br>
+  클라이언트는 BOPF의 객체지향 API를 활용해 business object에 접근 가능함
+- **Transaction layer** <br>
+  business object node의 변경 사항에 대한 commit, rollback... 등 DB에 반영하는 transaction 처리를 함
+- **Runtime layer** <br>
+  business object를 인스턴스화하고, life cycle 이벤트 처리를 하고, 클라이언트 수준의 상호작용에 응답하는데 필요한 작업을 수행함
+- **Persistence layer** <br>
+  business object 인스턴스를 DB에 유지하는데 필요한 기능을 제공함
   (persistence <> transient: runtime 시에만 데이터를 유지하고 DB에 반영하지는 않음)
 
 ![image](https://user-images.githubusercontent.com/58674365/120150358-ee265480-c225-11eb-9fe6-54d2e575b2f4.png)
@@ -79,10 +79,10 @@ sales order, purchase order와 같은 하나의 비즈니스 단위를 의미한
 
 Business object는 service API를 통해서만 접근이 가능하고, business ibject에 대한 행위는 transaction manager API를 통해서만 접근이 가능하다. 두 개를 통하지 않으면 business object에 어떤 작업도 불가하다.
 
-- Service manager 
-  : business object 생성, 업데이트 등 business object node 값에 영향을 미치는 작업 수행
-- Transaction layer
-  : commit, rollback 등 변경된 business object node 값을 DB에 반영하는 작업 수행
+- **Service manager**  <br>
+  business object 생성, 업데이트 등 business object node 값에 영향을 미치는 작업 수행
+- **Transaction layer**<br>
+  commit, rollback 등 변경된 business object node 값을 DB에 반영하는 작업 수행
 
 ![image](https://user-images.githubusercontent.com/58674365/120150382-f5e5f900-c225-11eb-8e41-7fb70204b185.png)
 
@@ -96,11 +96,11 @@ Business object는 service API를 통해서만 접근이 가능하고, business 
 
 노드 기반의 모델링 과정은 객체지향 프로그래밍과 동일하다. 간단히 말해 노드를 하나의 클래스 정의로 생각하자. 노드는 상황에 따라 다른 의미를 가진다.
 
-- Design time
-  : business object의 개별적인 부분의 데이터와 행위를 모델링하기 위해 사용
-    ex. Sales Order business object에 대한 ITEM 노드는 데이터, 행위, 다른 sales order와 관계 등 정의
-- Runtime
-  : runtime의 node는 컨테이너로써 internal table을 생각하면 되며 node row라고 불림
+- Design time<br>
+  business object의 개별적인 부분의 데이터와 행위를 모델링하기 위해 사용<br>
+  ex. Sales Order business object에 대한 ITEM 노드는 데이터, 행위, 다른 sales order와 관계 등 정의
+- Runtime<br>
+  runtime의 node는 컨테이너로써 internal table을 생각하면 되며 node row라고 불림
 
 ![image](https://user-images.githubusercontent.com/58674365/120249857-32ae0080-c2b7-11eb-89cd-d7e92b72bad1.png)
 
@@ -116,10 +116,10 @@ Business object는 service API를 통해서만 접근이 가능하고, business 
 
 데이터 모델링 관점에서 노드와 노드의 속성은 두 개의 다른 카테고리로 구분된다.
 
-- persistent nodes/attributes
-  : 시스템 데이터 베이스에 대해 영구적(persistent)이며, 데이터베이스 테이블과 매핑됨
-- transient nodes/attributes
-  : 검색 혹 계산을 위한 데이터 모델로써, runtime 시에만 존재하고 데이터 베이스에 반영x
+- **Persistent nodes/attributes**<br>
+  시스템 데이터 베이스에 대해 영구적(persistent)이며, 데이터베이스 테이블과 매핑됨
+- **Transient nodes/attributes**<br>
+  검색 혹 계산을 위한 데이터 모델로써, runtime 시에만 존재하고 데이터 베이스에 반영x
 
 <br>
 
@@ -154,11 +154,11 @@ business object를 수행할 때, node가 다른 node와 어떻게 연관되어 
 
 business object/node를 찾는 로직으로써 BOPF object model에는 두 타입의 쿼리가 있다.
 
-- node attributes queries
-  : logic이 BOPF runtime 내에서 정의된 쿼리로써, 
+- node attributes queries<br>
+  logic이 BOPF runtime 내에서 정의된 쿼리로써, 
    해당 쿼리를 implement하기 위해 어떠한 custom coding도 필요로 되지 않음
-- custom queries
-  : 복잡한 쿼리를 핸들링하기 위해 사용되며, custom ABAP object class에 정의됨
+- custom queries<br>
+  복잡한 쿼리를 핸들링하기 위해 사용되며, custom ABAP object class에 정의됨
 
 <br>
 
@@ -168,12 +168,12 @@ business object/node를 찾는 로직으로써 BOPF object model에는 두 타�
 SAP는 object-oriented API를 제공하여 이를 가능케 한다. 
 BOPF API는 크게 3 개의 주요 object type으로 나눠진다. 
 
-- /BOPF/IF_TRA_SERVICE_MANAGER
-  : node 정보에 대한 변경 
-- /BOPF/IF_TRA_TRANSACTION_MGR
-  : node 변경 정보를 DB에 반영, transactin 실행
-- /BOPF/IF-FRW_CONFIGURATION
-  : BOPF configuration 정보에 대한 접근
+- /BOPF/IF_TRA_SERVICE_MANAGER<br>
+  node 정보에 대한 변경 
+- /BOPF/IF_TRA_TRANSACTION_MGR<br>
+  node 변경 정보를 DB에 반영, transactin 실행
+- /BOPF/IF-FRW_CONFIGURATION<br>
+  BOPF configuration 정보에 대한 접근
 
 
 
