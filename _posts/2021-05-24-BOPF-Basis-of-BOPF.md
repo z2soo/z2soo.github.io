@@ -1,5 +1,5 @@
 ---
-title: "BOPF: Basis of BOPF"
+title: "BOPF Basis of BOPF"
 categories: 
   - BOPF
   - ABAP
