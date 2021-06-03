@@ -21,13 +21,13 @@ toc: true
 
 > Overview of standard TOR determination
 
-Business object instance의 lifecycle 동안 연쇄적인 반응이 필요한 이벤트가 있을 수 있다.<br> 예를 들어 특정 노드 정보가 생성, 저장, 수정 되었을 때, 관련된 노드에서 마찬가지로 정보의 업데이트가 필요할 수 있다. <br>즉, 특정 노드의 정보 변경에 대해 reaction을 제공하는 것이다. 
+Business object instance의 lifecycle 동안 연쇄적인 반응이 필요한 이벤트가 있을 수 있다.<br> 예를 들어 특정 노드 정보가 생성, 저장, 수정 되었을 때, 관련된 노드에서 마찬가지로 정보의 업데이트가 필요할 수 있다. 즉, 특정 노드의 정보 변경에 대해 reaction을 제공하는 것이다. 
 
 
 
 ### 1) Determination configuration
 
-TOR business object의 특정 determination을 클릭하여 determination의 설정에 대해 보도록 하자. 
+TOR business object의 determination을 클릭하여 determination의 설정에 대해 보도록 하자. 
 
 ![image](https://user-images.githubusercontent.com/58674365/120603816-5f187700-c487-11eb-91a0-8acc34279718.png)
 
@@ -37,17 +37,15 @@ TOR business object의 특정 determination을 클릭하여 determination의 설
   Persistenr => Exclusive Write
   Transient => Onlt Read
 - **Clss/Interface**<br>
-  determinaton implementation을 위한 class
+  determinaton implementation을 위한 class<br>
 
 
 
 아래의 체크박스는 해당 class에 어떤 method를 가지고 있는지를 나타낸다. 
 
-![image](https://user-images.githubusercontent.com/58674365/120603935-7bb4af00-c487-11eb-92e2-dda090b9f6a2.png)
+![image](https://user-images.githubusercontent.com/58674365/120603935-7bb4af00-c487-11eb-92e2-dda090b9f6a2.png)<br>
 
-
-
-**Request, Read & write nodes** 부분은 언제 determination이 호출되는지를 설정한다. 
+**Request, Read & write nodes** 부분은 언제 determination이 호출되는지를 설정한다. <br>참고로  create, updated ... 마지막 determin의 경우 사용되는 것을 본 적이 없다. 
 
 ![image](https://user-images.githubusercontent.com/58674365/120603994-8cfdbb80-c487-11eb-9d66-51d4b9181c5b.png)
 
@@ -58,15 +56,13 @@ TOR business object의 특정 determination을 클릭하여 determination의 설
 - **Write nodes** <br>
   After Loading Determination의 경우에만 사용
 - **Modeled Only** <br>
-  체크표시되면 해당 행의 전체 configuration이 runtime effect을 가지지 않음
-
-참고로  create, updated ... 마지막 determin의 경우 사용되는 것을 본 적이 없다. 
+  체크표시되면 해당 행의 전체 configuration이 runtime effect을 가지지 않음<br>
 
 
 
 **Node category assignment**는 정확히 어느 시점에 determination이 trigger 되는지 설정한다. 
 
-![image-20210525143928747](C:\Users\에코아이티\Desktop\typora img\image-20210525143928747.png)
+![image](https://user-images.githubusercontent.com/58674365/120605737-60e33a00-c489-11eb-97ec-da2bcc9dd862.png)<br>
 
 기술적으로는 하나의 determination을 여러 event에서 사용하는 것이 가능하다. <br>하지만 최적은 1개 determination을 1개의 event에 사용하는 것이고, 1개의 event에 대해서도 여러 determination을 가지는 것을 권장하지 않는다. 만약, after modify 에 대해 서로 다르게 행동하는 여러 determination을 가지게 된다고 가정하면, BOPF가 각 determination을 trigger 할지 말지 판단하면서 느려지게 된다. 
 
@@ -74,9 +70,9 @@ TOR business object의 특정 determination을 클릭하여 determination의 설
 
 **Determination dependency**는 determination의 순서를 정의한다. 
 
-![image-20210525144749007](C:\Users\에코아이티\Desktop\typora img\image-20210525144749007.png)
+![image](https://user-images.githubusercontent.com/58674365/120605946-9be56d80-c489-11eb-83e4-e5cdadde92c9.png)
 
-![image-20210525144821970](C:\Users\에코아이티\Desktop\typora img\image-20210525144821970.png)
+![image](https://user-images.githubusercontent.com/58674365/120605974-a43da880-c489-11eb-9a86-796c4bd904f3.png)
 
 - **Necessary Determination** <br>
   해당 determination 이전에 발생하는 determination
@@ -96,7 +92,7 @@ Determination은 `/BOBF/IF_FRW_DETERMINATION` interface를 implement 하고, 3�
 - **EXECUTE**<br>
   catains the main determination business logic
 
-
+<br>
 
 ## 2. Introduction to Actions
 
@@ -114,45 +110,45 @@ Action에 대한 설명은 다음과 같다.
 
 action이름을 정할 때, `동사 + 정확히 어디에서 해당 action이 수행되는지` 의 네이밍 룰을 따르도록 하자.
 
-![image-20210525151059343](C:\Users\에코아이티\Desktop\typora img\image-20210525151059343.png)
+![image](https://user-images.githubusercontent.com/58674365/120606078-bddef000-c489-11eb-9c69-cda635551256.png)
 
 
 
-![image-20210525151450099](C:\Users\에코아이티\Desktop\typora img\image-20210525151450099.png)
+![image](https://user-images.githubusercontent.com/58674365/120606132-ce8f6600-c489-11eb-8267-66d062aa651b.png)
 
 - **Node**<br>
   action이 할당된 노드
 - **Action cardinality**<br>
   얼마나 많은 노드 인스턴스에 해당 action이 한번에 실행 될 수 있는지 차수
 - **Change mode**<br>
-  determination의 change mode와 유사하게 해당 action으로 다른 변경이 이루어지는지 여부,
-  Persistent action => Exclusive write
+  determination의 change mode와 유사<br>하게 해당 action으로 다른 변경이 이루어지는지 여부<br>
+  Persistent action => Exclusive write<br>
   Action only on transient fields => Only Read Mode
 - **Execute Action only if ~ 체크박스**<br>
   체크시 모든 노드에 대해서 해당 action을 실행할 수 있다.
 
 - **Class/interface**<br>
-  해당 action을 implement하는 class
+  해당 action을 implement하는 class<br>
 
 
 
 **Read & Write Nodes** 에서는 action 실행에 대한 상황을 선택한다. 선택 사항은 determination을 참고하자.
 
-![image-20210525152710756](C:\Users\에코아이티\Desktop\typora img\image-20210525152710756.png)
+![image](https://user-images.githubusercontent.com/58674365/120606184-de0eaf00-c489-11eb-9a75-9d4410a71e05.png)
 
 
 
 **Node category assignment **에서는 어느 노드에서 해당 action이 실행 가능지 체크한다. 
 
-![image-20210525152924840](C:\Users\에코아이티\Desktop\typora img\image-20210525152924840.png)
+![image](https://user-images.githubusercontent.com/58674365/120606291-fe3e6e00-c489-11eb-9be2-22e8a3a6d4e8.png)
 
 
 
 **Property change trigger** 는 property에 대해 설정하지만 이는 주로 property determination에서 설정된다.
 
-![image-20210525153005123](C:\Users\에코아이티\Desktop\typora img\image-20210525153005123.png)
+![image](https://user-images.githubusercontent.com/58674365/120606348-11513e00-c48a-11eb-8292-e7e68ceb1c1e.png)
 
-
+<br>
 
 ## 3. Introduction to Validation
 
@@ -170,5 +166,6 @@ Validaiton은 다음 두 카테고리가 있다.
 
 <br>
 
-Determination 및 action의 configuration과 마찬가지로 validation 또한 실행 상황, 시점, 노드 설정이 가능하다.<br>
-단, 다른 것과 다르게 `Failed early` 라는 원칙을 가진다. 이는 만약 10개의 step이 수행되어야 하는 경우 2에서 fail 하면 나머지 step을 수행하지 않는 것이다. 이미 consistency가 깨졌기 때문에 굳이 validation check를 할 필요가 없다고 판단하기 때문이다. <br>그래서 신규 개발시 모든 check를 초반부에 두려고 한다. <br>input parameter에서 inconsistency가 존재하면 performance에 대해 영향을 줄 수 있는 로직을 실행하지 않아도 되기 때문이다. 
+Determination 및 action의 configuration과 마찬가지로 validation 또한 실행 상황, 시점, 노드 설정이 가능하다. 단, 다른 것과 다르게 `Failed early` 라는 원칙을 가진다. 이는 만약 10개의 step이 수행되어야 하는 경우 2에서 fail 하면 나머지 step을 수행하지 않는 것이다. 이미 consistency가 깨졌기 때문에 굳이 validation check를 할 필요가 없다고 판단하기 때문이다. 
+
+그래서 신규 개발시 모든 check를 초반부에 두려고 한다. input parameter에서 inconsistency가 존재하면 performance에 대해 영향을 줄 수 있는 로직을 실행하지 않아도 되기 때문이다. 
