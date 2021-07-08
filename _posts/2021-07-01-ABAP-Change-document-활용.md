@@ -40,7 +40,7 @@ Maintenance view 의 change document function은 event를 통해 작성한다. <
 
 저장 전에 DB 데이터와 비교하여 변경 전 데이터와 변경 후 데이터를 각각 따로 담아놓는다.
 
-```ABAP
+```sql
 * TOP에 선언한 부분
 data: gt_before_main like TABLE OF yZZ061T01 WITH HEADER LINE,
       gt_after_main like TABLE OF yZZ061T01 with HEADER LINE,
@@ -50,7 +50,7 @@ data: gt_before_main like TABLE OF yZZ061T01 WITH HEADER LINE,
 
 
 
-```ABAP
+```sql
 FORM BEFORE_SAVE.
 
 * Get origin data from DB
@@ -116,7 +116,7 @@ ENDFORM.
 
 그리고 변경 전, 후 데이터 테이블을 가지고 change document function을 호출해주면 된다.<br>테이블/뷰 이름에 따라 case를 나눠서 작성하는 것이 아닌, 어떤 뷰/테이블이 들어오던지 동적으로 테이블을 생성하고 값을 비교하게끔 클래스로 작성해보아도 좋을 듯 하다. 
 
-```ABAP
+```sql
 FORM AFTER_SAVE.
 
   IF GT_AFTER_MAIN[] IS NOT INITIAL.
