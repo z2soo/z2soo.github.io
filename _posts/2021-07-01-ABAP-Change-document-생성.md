@@ -61,10 +61,10 @@ Change document object는 생성되었지만, 해당 테이블의 데이터가 �
 
 change document object 생성에 자동적으로 생성된 funciton module은 다음과 같다.<br>데이터가 유지보수되는 시점에 작성하면 된다 하였는데, maintenance view와 view cluster에서는 어떻게 change document를 작성하는지 이후에 다루도록 하겠다.
 
-```ABAP
+```sql
   CALL FUNCTION 'ZMMCDO01_WRITE_DOCUMENT'
     EXPORTING
-      OBJECTID                      = ZZ061T01 "change document 기록할 대상 테이블
+      OBJECTID                      = ZZ061T01 "//change document 기록할 대상 테이블
       TCODE                         = SY-TCODE
       UTIME                         = SY-UZEIT
       UDATE                         = SY-DATUM
@@ -82,8 +82,8 @@ change document object 생성에 자동적으로 생성된 funciton module은 �
 *     UPD_ZZ061T03T                 = ' '
     TABLES
       ICDTXT_ZMMCDO01               =
-      XZZ061T01                     = "로그 작성할 XZZ061T01의 변경 후 테이블
-      YZZ061T01                     = "로그 작성할 XZZ061T01의 변경 전 테이블
+      XZZ061T01                     = "//로그 작성할 XZZ061T01의 변경 후 테이블
+      YZZ061T01                     = "//로그 작성할 XZZ061T01의 변경 전 테이블
 *     XZZ061T01T                    =
 *     YZZ061T01T                    =
 *     XZZ061T02                     =
