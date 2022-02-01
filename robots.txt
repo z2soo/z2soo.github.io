@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://z2soo.github.io/blog/sitemap.xml
+Sitemap: https://z2soo.github.io/sitemap.xml
