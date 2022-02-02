@@ -1,5 +1,5 @@
 ---
-title: "ABAP Query & Data Handing 수정중"
+title: "ABAP Query and Data Handing 수정중"
 categories: 
   - ABAP
 tags:
