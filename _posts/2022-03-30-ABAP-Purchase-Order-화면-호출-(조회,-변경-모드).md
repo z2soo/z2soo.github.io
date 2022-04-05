@@ -1,5 +1,5 @@
 ---
-title: "Purchase Order 화면 호출 (조회/변경 모드)"
+title: "ABAP Purchase Order 화면 호출 (조회/변경 모드)"
 categories: 
   - ABAP
 tags:
@@ -25,7 +25,7 @@ Purchase Order 화면을 호출하는 방법은 2가지가 있다.<br>일반적�
 
 
 
-### CALL TRANSACTION 활용
+## CALL TRANSACTION 활용
 
 ```ABAP
 SET PARAMETER ID 'BES' FIELD '오더번호'.
@@ -34,7 +34,7 @@ CALL TRANSACTION 'ME23N'.
 
 
 
-### Function 활용
+## Function 활용
 
 ```ABAP
     CALL FUNCTION 'ME_DISPLAY_PURCHASE_DOCUMENT'
