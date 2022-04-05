@@ -95,50 +95,50 @@ analytics:
 author:
   name             : "Jisoo Lim"
   avatar           : "/assets/images/mypic.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Post what I study :D \n\n Python,R,JavaScript,Git,GCP \n SCP,ABAP,Fiori,MM \n\n 티스토리 블로그 내용 이전 중 \n\n 그동안 메일주소가 잘못 연결되있었네요ㅠㅠ \n\n 메일 재설정 완료!"
+  bio              : "Post what I study :D \n\n Python,R,JavaScript,Git,GCP \n SAP,ABAP,Fiori,MM \n\n 티스토리 블로그도 운영중-"
   location         : "Anyang, South Korea"
   email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:moonjstars96@gmail.com"
-    - label: "Website"
+    - label: "Tstory Blog"
       icon: "fas fa-fw fa-link"
-      url: "https://z2soo.github.io"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
+      url: "https://z2soo.tistory.com/"
+#     - label: "Twitter"
+#       icon: "fab fa-fw fa-twitter-square"
+#       url: "https://twitter.com/"
+#     - label: "Facebook"
+#       icon: "fab fa-fw fa-facebook-square"
+#       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/z2soo"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+#     - label: "Instagram"
+#       icon: "fab fa-fw fa-instagram"
+#       url: "https://instagram.com/"
 
 # Site Footer
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url:
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      # url:
-    - label: "GitLab"
-      icon: "fab fa-fw fa-gitlab"
-      # url:
-    - label: "Bitbucket"
-      icon: "fab fa-fw fa-bitbucket"
-      # url:
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url:
+#     - label: "Twitter"
+#       icon: "fab fa-fw fa-twitter-square"
+#       url:
+#     - label: "Facebook"
+#       icon: "fab fa-fw fa-facebook-square"
+#       url:
+#     - label: "GitHub"
+#       icon: "fab fa-fw fa-github"
+#       url:
+#     - label: "GitLab"
+#       icon: "fab fa-fw fa-gitlab"
+#       url:
+#     - label: "Bitbucket"
+#       icon: "fab fa-fw fa-bitbucket"
+#       url:
+#     - label: "Instagram"
+#       icon: "fab fa-fw fa-instagram"
+#       url:
 
 
 # Reading Files
