@@ -19,11 +19,7 @@ toc: true
 
 ALV Toolbar에 button을 생성해준다. 아래 코드에는 없지만 잊지 말고 Event Handler도 등록해준다. 비교를 위해 drop list로 생성할 버튼과 일반적인 push 버튼을 생성했다.<br>아래는 Toolbar 버튼만 생성한 상태이다.
 
-<br>
-
 ![image](https://user-images.githubusercontent.com/58674365/161659360-23e9d566-dfbe-4c83-8a03-06de7184bb92.png)
-
-<br>
 
 ```abap
 *&---------------------------------------------------------------------*
@@ -95,13 +91,10 @@ FORM zf_handle_toolbar  USING  pi_object TYPE REF TO cl_alv_event_toolbar_set
 
 ENDFORM.
 ```
-
- <br>
-
+<br>
 이때, drop list로 생성할 버튼의 **butn_type = 2** 로 설정했는데, 이는 **메뉴 타입**에 해당된다. (=drop list 형태)<br>
 
 ![image](https://user-images.githubusercontent.com/58674365/161659679-76499c45-c982-4407-acc8-4f4968e6eef5.png)
-
 <br>
 
 ## 2. Menu List (Drop List) 생성
@@ -112,7 +105,6 @@ ENDFORM.
 
 **메뉴 구조는 리스트로 보여지는 Text와 해당 값을 클릭했을 때의 Function code값으로 구성된다.**<br>그리고 선택된 리스트 값의 function code는 Event의 user command로 인식되니 **HANDLE_USER_COMMAND** 이벤트를 추가하여 값에 따른 추가 로직/동작을 작성해주면 된다. <br>
 
- <br>
 
 ```abap
 *----------------------------------------------------------------------*
@@ -186,9 +178,10 @@ ENDFORM.
 
 ## 3. List 값 선택에 따른 로직 추가
 
-선택된 리스트 값의 function code는 Event의 user command로 인식되니 **HANDLE_USER_COMMAND** 이벤트를 추가하여 값에 따른 추가 로직/동작을 작성해주면 된다. 아래 코드에는 없지만 잊지 말고 Event Handler도 등록해준다.<br> 
+선택된 리스트 값의 function code는 Event의 user command로 인식되니 **HANDLE_USER_COMMAND** 이벤트를 추가하여 값에 따른 추가 로직/동작을 작성해주면 된다. 아래 코드에는 없지만 잊지 말고 Event Handler도 등록해준다.
+<br> 
 
-```ABAP
+```abap
 *----------------------------------------------------------------------*
 *       CLASS DEFINITION
 *----------------------------------------------------------------------*
@@ -222,12 +215,10 @@ FORM zf_user_comm  USING pv_ucomm TYPE sy-ucomm.
 ENDFORM.
 ```
 
- <br>
 
 리스트의 두번째 값인 Choice 2를 선택했을 때의 HANDLE_USER_COMM에 들어오는 값은 'B' 이다.<br>HANDLE_USER_COMM 확인!<br>
 
 ![image](https://user-images.githubusercontent.com/58674365/161677292-9f24c7a0-4667-4835-9355-5e0190bb75f4.png)
 
-<br>
 
 ![image](https://user-images.githubusercontent.com/58674365/161677302-dd3121a4-ac8e-46e9-abc8-501927c5680d.png)
