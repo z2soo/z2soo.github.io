@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "Jisoo Lim"
   avatar           : "/assets/images/mypic.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Post what I study :D \n\n Python,R,JavaScript,Git,GCP \n SAP,ABAP,Fiori,MM \n\n 티스토리 블로그도 운영중:) \n\n 티스토리에 \n 자격증 자료+@ 포스팅 \n 아래 Tstory URL로 이동!"
+  bio              : "Post what I study :D \n\n Python,R,JavaScript,Git,GCP \n SAP,ABAP,Fiori,MM \n\n 티스토리 블로그도 운영중:) \n\n 자격증 자료+@ 포스팅 \n\n 아래 Tstory URL로 이동!"
   location         : "Anyang, South Korea"
   email            :
   links:
