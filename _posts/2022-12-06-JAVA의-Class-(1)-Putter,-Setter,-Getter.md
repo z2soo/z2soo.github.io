@@ -1,5 +1,5 @@
 ---
-title: "JAVA의 Class (1) "
+title: "JAVA의 Class (1) Putter, Setter, Getter"
 categories: 
   - JAVA
 tags:
