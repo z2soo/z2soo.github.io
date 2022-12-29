@@ -1,5 +1,5 @@
 ---
-title: "JAVA의 Class (1)"
+title: "JAVA의 Class (1) "
 categories: 
   - JAVA
 tags:
