@@ -1,5 +1,5 @@
 ---
-title: "JAVA의 Class (2) 생성자 Constructor
+title: "JAVA의 Class (2) 생성자 Constructor"
 categories: 
   - JAVA
 tags:
