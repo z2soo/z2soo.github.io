@@ -8,23 +8,24 @@ tags:
   - Method
   - 객체지향
 toc: true
+
 ---
 
 ## **To-Do** 
 
 > \- 커피가게를 클래스로 구현한다. 
+>
 > \- 객체에 대한 CRUD 작업을 진행한다. 
+>
 > \- 컨테이너 ArrayList를 생성하여 다양한 coffee 클래스 객체를 저장하고 읽어오는 작업을 진행한다. 
 
 
 
-Coffee에 대한 클래스는 아래 포스팅 중 coffee01 부분을 참고한다. 
-
-[JAVA의 Class (2) 생성자 Constructor](https://z2soo.github.io/java/JAVA%EC%9D%98-Class-(2)-%EC%83%9D%EC%84%B1%EC%9E%90-Constructor/)
+Coffee에 대한 클래스는 아래 포스팅 중 coffee01 부분을 참고한다. <br>[JAVA의 Class (2) 생성자 Constructor](https://z2soo.github.io/java/JAVA%EC%9D%98-Class-(2)-%EC%83%9D%EC%84%B1%EC%9E%90-Constructor/)
 
 
 
-## **JAVA Code**
+## **1. JAVA Code**
 
 ```java
 package Pack02;
@@ -69,9 +70,9 @@ public class Coffee03 {
 }
 ```
 
+<br>
 
-
-## **Eclipse Screen**
+## **2. Eclipse Screen**
 
 ![img](https://blog.kakaocdn.net/dn/dmrqQx/btrUJj5H3uN/J8A9w4KwT2OT6Ye2XFuJKk/img.png)
 
