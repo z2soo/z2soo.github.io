@@ -31,7 +31,6 @@ JAVA의 생성자 Constructor란 무엇이며 어떤 때 사용하는가?
 
 생성자는 java class 생성시, 자동으로 생성되도록 설정할 수 있다. 
 클래스를 생성하고 생성자를 설정하여 어떻게 동작하는지 확인해보자. 
-
 <br>
 
 ![img](https://blog.kakaocdn.net/dn/cfs7ZP/btrUKY7haVP/s2z7A4IK0qcPxaKKRy8Jpk/img.png)
