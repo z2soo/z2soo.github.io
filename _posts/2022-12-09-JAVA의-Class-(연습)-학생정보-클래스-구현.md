@@ -1,5 +1,5 @@
 ---
-title: "JAVA의 Class (연습))-Object-type-및-Type-casting
+title: "JAVA의 Class (연습) 학생정보 클래스 구현"
 categories: 
   - JAVA
 tags:
