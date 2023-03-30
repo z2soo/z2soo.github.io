@@ -9,9 +9,7 @@ tags:
 toc: true
 ---
 
-## Introduction to Integration Suite
-
-### 1. Integration Suite & Process Orchestration
+## 1. Integration Suite & Process Orchestration
 
 Integration Suite와 Process Orchestration의 차이는 아래와 같다. 
 
@@ -24,7 +22,7 @@ Integration Suite와 Process Orchestration의 차이는 아래와 같다.
 
 
 
-### 2. Business Integration Suite
+## 2. Business Integration Suite
 
 SAP의 4가지 주요 통합 원칙을 따르는 `EiPaaS (Enterprise Integration Platform as a Service) `는 SAP에서 관리하는 툴, 사전 구축된 콘텐츠, 온프레미스 및 클라우드 기반 애플리케이션과 프로세스를 통합하는 기능을 제공한다. 
 
@@ -51,7 +49,7 @@ SAP의 4가지 주요 통합 원칙을 따르는 `EiPaaS (Enterprise Integration
 
 
 
-### 3. Integration Suite 연결 기술
+## 3. Integration Suite 연결 기술
 
 SAP 및 다른 솔루션들은 api를 제공하고 이를 가지고 연결, 개발을 진행한다. 하지만 사용하는 패턴(메시지 처리, 오류 처리, 이벤트 처리 등)이 다르기 때문에 어떻게 사용할지를 습득하는 과정이 필요하다. 이렇게 다른 연결 방법을 가진 솔루션들을 쉽게 연결하기 위한 connector를 제공하는데 이 것이 바로 아래 내용 중 Open connector에 해당된다. 
 
@@ -63,7 +61,7 @@ SAP 및 다른 솔루션들은 api를 제공하고 이를 가지고 연결, 개�
 
 
 
-### 4. Integration Suite 통합 기술
+## 4. Integration Suite 통합 기술
 
 SAP Integration Suite에서는 아래와 같은 기술적 통합을 지원한다. 
 
